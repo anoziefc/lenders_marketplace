@@ -1,9 +1,9 @@
+from backend.db import Storage
+from backend.routers import router
 from contextlib import asynccontextmanager
-from db import Storage
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import ORJSONResponse
-from routers import router
 
 
 @asynccontextmanager
@@ -46,4 +46,4 @@ def health():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run("backend.main:app", host="127.0.0.1", port=8000, reload=True)

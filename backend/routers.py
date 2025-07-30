@@ -1,9 +1,9 @@
-from cache import redis_client, LENDER_CACHE_TTL_SECONDS
-from db import get_storage
+from backend.cache import redis_client, LENDER_CACHE_TTL_SECONDS
+from backend.db import get_storage
+from backend.models import ContactForm, LoanResponse, LoanRequest, LoanProduct, RequestLenderResponse, SubmitContactResponse
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import or_
 from sqlalchemy.orm import joinedload, Session
-from models import ContactForm, LoanResponse, LoanRequest, LoanProduct, RequestLenderResponse, SubmitContactResponse
 from uuid import uuid4
 
 import json

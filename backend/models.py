@@ -3,7 +3,7 @@ from sqlalchemy import Column, String, Integer, ForeignKey, Numeric
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
-from typing import Optional, List, Dict
+from typing import Optional, List
 from uuid import uuid4
 
 

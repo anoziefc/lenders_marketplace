@@ -1,7 +1,7 @@
+from backend.models import Base
 from contextlib import contextmanager
 from dotenv import load_dotenv
 from fastapi import Request
-from models import Base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Query
 from sqlalchemy.sql import ClauseElement
