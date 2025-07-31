@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import TeamMemberCard from "./TeamMemberCard";
+import Button from "./Button";
 
 // Define the structure for a team member
 export interface TeamMember {
@@ -129,11 +130,18 @@ const TeamSection: React.FC = () => {
           The team behind FundOnion
         </h2>
 
-        <div className="flex sm:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center gap-6">
+        <div className="flex sm:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center gap-6 max-w-3xl mx-auto">
           {teamMembers.map((member, index) => (
             <TeamMemberCard key={index} member={member} />
           ))}
         </div>
+      </div>
+      <div className="flex justify-center mt-12  max-w-54 mx-auto">
+        <Button
+          onClick={() => {}}
+          value={"Join our team"}
+          cls={"bg-teal-800 text-white"}
+        />
       </div>
     </section>
   );

@@ -1,7 +1,9 @@
 import AboutHero from "@/components/AboutHero";
 import MissionSection from "@/components/Abouts";
 import Breadcrumb from "@/components/Breadcrumb";
+import Button from "@/components/Button";
 import TeamSection from "@/components/TeamSection";
+import StatsSection from "@/components/StatsSection";
 import React from "react";
 
 const page = () => {
@@ -20,6 +22,8 @@ const page = () => {
       />
       <MissionSection />
       <TeamSection/>
+      <StatsSection/>
+      
     </div>
   );
 };
