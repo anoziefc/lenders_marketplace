@@ -5,6 +5,7 @@ import Button from "@/components/Button";
 import TeamSection from "@/components/TeamSection";
 import StatsSection from "@/components/StatsSection";
 import React from "react";
+import JobOpeningsSection from "@/components/JobOpeningsSection";
 
 const page = () => {
   return (
@@ -21,9 +22,9 @@ const page = () => {
         imageUrl="/about-hero.webp"
       />
       <MissionSection />
-      <TeamSection/>
-      <StatsSection/>
-      
+      <TeamSection />
+      <StatsSection />
+      <JobOpeningsSection />
     </div>
   );
 };
