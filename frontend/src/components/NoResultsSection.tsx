@@ -52,7 +52,7 @@ const NoResultsSection: React.FC = () => {
           </h2>
           {/* Subheading */}
           <p className="text-base sm:text-lg md:text-xl opacity-90 mb-6 sm:mb-8">
-            You'll get more results with a lower request amount.
+            You&apos;ll get more results with a lower request amount.
           </p>
           {/* Adjust search button */}
           <button

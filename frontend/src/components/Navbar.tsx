@@ -100,7 +100,9 @@ const MenuItem: React.FC<MenuItemProps> = ({ item, isMobile = false }) => {
         <Link
           href={item.href || "#"}
           className={`flex items-center justify-between py-2 hover:text-yellow-400 ${
-            isMobile ? "text-3xl md:text-xl w-full " : "text-gray-700 font-medium"
+            isMobile
+              ? "text-3xl md:text-xl w-full "
+              : "text-gray-700 font-medium"
           } `}
           onClick={toggleMobileSubmenu}
         >
@@ -111,7 +113,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ item, isMobile = false }) => {
         </Link>
         {/* Desktop Submenu */}
         {!isMobile && isHovered && (
-          <div className="text-3xl absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 border border-gray-100">
+          <div className="text-md absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 border border-gray-100">
             {item.submenu.map((subItem) => (
               <Link
                 key={subItem.name}
