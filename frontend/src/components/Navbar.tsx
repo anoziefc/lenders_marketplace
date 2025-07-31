@@ -50,25 +50,27 @@ const navItems: NavItem[] = [
   {
     name: "Loans",
     dropdown: true,
+    href: "/journey",
     submenu: [
-      { name: "Long-Term Loans", href: "#" },
-      { name: "Short-Term Loans", href: "#" },
-      { name: "Emergency Loans", href: "#" },
-      { name: "Secured Loans", href: "#" },
-      { name: "Unsecured Loans", href: "#" },
+      { name: "Long-Term Loans", href: "/journey" },
+      { name: "Short-Term Loans", href: "/journey" },
+      { name: "Emergency Loans", href: "/journey" },
+      { name: "Secured Loans", href: "/journey" },
+      { name: "Unsecured Loans", href: "/journey" },
     ],
   },
   {
     name: "Guides",
     dropdown: true,
+    href: "/guides/guide-to-business-loans",
     submenu: [
-      { name: "Starting a Business", href: "#" },
-      { name: "Loan Application Tips", href: "#" },
-      { name: "Financial Planning", href: "#" },
+      { name: "Business Loans Guide", href: "/guides/guide-to-business-loans" },
+      { name: "Asset Finance Guide", href: "/guides/guide-to-asset-finance" },
+      { name: "Invoice Finance Guide", href: "/guides/guide-to-invoice-finance" },
     ],
   },
-  { name: "About", href: "#" },
-  { name: "Contact", href: "#" },
+  { name: "About", href: "/about" },
+  { name: "Contact", href: "/contact" },
   { name: "Blog", href: "#" },
 ];
 
@@ -167,13 +169,15 @@ const Navbar: React.FC = () => {
       <div className="flex items-center justify-between p-4">
         {/* Fundonion Logo */}
         <div className="flex-shrink-0">
-          <span className="text-[#2a6d67] md:text-md text-3xl lg:text-3xl font-semibold">
-            Fund
-            <span className="text-[#f5c76e]">
-              <OnionIcon />
-              nion
+          <Link href="/">
+            <span className="text-[#2a6d67] md:text-md text-3xl lg:text-3xl font-semibold cursor-pointer">
+              Fund
+              <span className="text-[#f5c76e]">
+                <OnionIcon />
+                nion
+              </span>
             </span>
-          </span>
+          </Link>
         </div>
 
         <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
@@ -183,9 +187,11 @@ const Navbar: React.FC = () => {
         </div>
 
         <div className="hidden md:flex items-center space-x-4 lg:space-x-6">
-          <button className="bg-[#2a6d67] text-white px-5 py-2 md:px-6 md:py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors duration-200">
-            Find Funding
-          </button>
+          <Link href="/journey">
+            <button className="bg-[#2a6d67] text-white px-5 py-2 md:px-6 md:py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors duration-200">
+              Find Funding
+            </button>
+          </Link>
         </div>
 
         <div className="flex items-center md:hidden space-x-3">
@@ -240,9 +246,11 @@ const Navbar: React.FC = () => {
                 <MenuItem key={item.name} item={item} isMobile={true} />
               ))}
             </div>
-            <button className="bg-[#2a6d67] text-white px-5 py-2 rounded-full font-semibold hover:bg-opacity-90 transition-colors duration-200 w-full text-center">
-              Get started
-            </button>
+            <Link href="/journey" className="w-full">
+              <button className="bg-[#2a6d67] text-white px-5 py-2 rounded-full font-semibold hover:bg-opacity-90 transition-colors duration-200 w-full text-center">
+                Get started
+              </button>
+            </Link>
           </div>
         </div>
       )}
