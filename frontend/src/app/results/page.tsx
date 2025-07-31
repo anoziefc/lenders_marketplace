@@ -1,4 +1,6 @@
+import ContactSection from "@/components/ContactSection";
 import Form from "@/components/Form";
+import NoResultsSection from "@/components/NoResultsSection";
 import Rating from "@/components/Ratings";
 import TopBar from "@/components/TopBar";
 import Image from "next/image";
@@ -7,13 +9,16 @@ import Link from "next/link";
 const Page = () => {
   return (
     <div
-      className={
-        "p-4 flex flex-col gap-4 items-center justify-center min-h-screen"
-      }
+      className={"flex flex-col gap-4 items-center justify-center min-h-screen"}
     >
-      <TopBar />
-      <div className="flex items-center content-center w-full justify-center">
-        <Form />
+      <div className="p-4 w-full">
+        <TopBar />
+      </div>
+      <div className="flex gap-5 flex-col items-center content-center w-full justify-center">
+      <div className="p-4 w-full">
+        <NoResultsSection />
+        </div>
+        <ContactSection />
       </div>
       <div className="">
         <p>

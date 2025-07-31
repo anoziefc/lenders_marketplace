@@ -140,7 +140,7 @@ const ContactForm: React.FC = () => {
         {/* What's your message? (Message) */}
         <div>
           <label htmlFor="message" className="sr-only">
-            What's your message?
+            What&apos;s your message?
           </label>
           <textarea
             id="message"
