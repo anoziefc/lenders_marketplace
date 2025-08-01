@@ -4,68 +4,74 @@ import React from "react";
 
 const HomeHero: React.FC = () => {
   return (
-    <div className="min-h-screen bg-[#1A4738] text-white flex items-center justify-center p-4 sm:p-8 lg:p-16">
-      <div className="container mx-auto flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-16">
-        {/* Left Content Section */}
-        <div className="flex flex-col items-center lg:items-start text-center lg:text-left max-w-2xl">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4 rounded-lg">
-            The UK's only business finance platform to instantly match you with
-            funders and compare{" "}
-            <span className="text-[#FFD700]">profiles.</span>
+     <section className="bg-teal-900 text-white py-16 px-6 md:px-20 relative overflow-hidden">
+      <div className="max-w-5xl mx-auto flex flex-col lg:flex-row justify-between items-start">
+        {/* Left Text Content */}
+        <div className="lg:w-1/2 space-y-6 z-10">
+          <h1 className="text-3xl md:text-4xl font-bold leading-snug">
+            The UK&apos;s only business<br />
+            finance platform to instantly<br />
+            match you with funders and<br />
+            compare <span className="text-yellow-400">profile</span>
           </h1>
-          <p className="text-base sm:text-lg mb-8 text-gray-300 rounded-lg">
-            Find your business funding options in under 90 seconds - no hidden
-            costs, no obligation, no impact to your credit score.
+
+          <p className="text-sm md:text-base text-gray-200">
+            Find your business funding options in under 90 seconds -<br />
+            no hidden costs, no obligation, no impact to your credit score.
           </p>
-          <button className="bg-[#FFD700] text-[#1A4738] font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-yellow-400 transition duration-300 ease-in-out">
+
+          <button className="bg-yellow-400 text-black font-semibold py-2 px-6 rounded-full hover:bg-yellow-300 transition">
             Find Funding
           </button>
 
-          <div className="mt-12 w-full">
-            <p className="text-sm text-gray-400 mb-4 rounded-lg">As seen in</p>
-            <div className="flex flex-wrap justify-center lg:justify-start items-center gap-6">
-              {/* Placeholder for logos - In a real HomeHero, these would be SVG or image components */}
-              <div className="h-8 sm:h-10 w-auto relative aspect-square">
-                <Image
-                  src="/not-found.jpg"
-                  alt="The Fintech Times Logo"
-                  fill
-                  className="rounded-lg"
-                />
-              </div>
-              <div className="h-8 sm:h-10 w-auto relative aspect-square">
-                <Image
-                  src="/not-found.jpg"
-                  alt="The Independent Logo"
-                  fill
-                  className="rounded-lg"
-                />
-              </div>
-              <div className="h-8 sm:h-10 w-auto relative aspect-square">
-                <Image
-                  src="/not-found.jpg"
-                  alt="The Times Logo"
-                  fill
-                  className="rounded-lg"
-                />
-              </div>
+          {/* Government & Partners */}
+          <div>
+            <img
+              src="https://cdn.prod.website-files.com/60d7496b30047b8555d83cf0/62b2e577527a94f91c33b7c2_Desktop%20Final-min-p-1600.avif"
+              alt="Gov Certified"
+              className="h-8 mt-4"
+            />
+          </div>
+
+          {/* Featured In */}
+          <div className="mt-6 space-y-2">
+            <p className="uppercase text-sm text-gray-300">As seen in</p>
+            <div className="flex flex-col space-y-1 text-white">
+              <span className="font-serif">The Fintech Times</span>
+              <span className="font-serif">The Independent</span>
+              <span className="font-serif">The Times</span>
             </div>
           </div>
         </div>
 
-        {/* Right Content Section - Mobile Mockups Placeholder */}
-        <div className="flex-shrink-0 mt-12 lg:mt-0 w-full max-w-sm">
-          <div className="w-full aspect-square relative">
-            <Image
-              src="/not-found.jpg"
-              alt="Mobile HomeHero Mockups"
-              fill
-              className="rounded-lg shadow-2xl"
+        {/* Right Side Images */}
+        <div className="hidden lg:block lg:w-1/2 relative">
+          {/* Replace with actual images or mobile mockups */}
+          <div className="absolute top-0 right-0 w-[250px] h-[500px] bg-white rounded-xl shadow-2xl transform rotate-[15deg]">
+            <p className="text-black p-4">
+              <Image
+              src="https://cdn.prod.website-files.com/60d7496b30047b8555d83cf0/62b2e577527a94f91c33b7c2_Desktop%20Final-min-p-1600.avif"
+              alt="Gov Certified"
+              width={500}
+              height={500}
+              className="h-8 mt-4"
             />
+            </p>
+          </div>
+          <div className="absolute bottom-0 right-10 w-[220px] h-[400px] bg-white rounded-xl shadow-xl transform rotate-[5deg]">
+            <p className="text-black p-4">
+              <Image
+              src="https://cdn.prod.website-files.com/60d7496b30047b8555d83cf0/62b2e577527a94f91c33b7c2_Desktop%20Final-min-p-1600.avif"
+              alt="Gov Certified"
+              width={500}
+              height={500}
+              className="h-8 mt-4"
+            />
+            </p>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

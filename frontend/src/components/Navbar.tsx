@@ -51,13 +51,6 @@ const navItems: NavItem[] = [
     name: "Loans",
     dropdown: true,
     href: "/journey",
-    submenu: [
-      { name: "Long-Term Loans", href: "/journey" },
-      { name: "Short-Term Loans", href: "/journey" },
-      { name: "Emergency Loans", href: "/journey" },
-      { name: "Secured Loans", href: "/journey" },
-      { name: "Unsecured Loans", href: "/journey" },
-    ],
   },
   {
     name: "Guides",
@@ -71,7 +64,6 @@ const navItems: NavItem[] = [
   },
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
-  { name: "Blog", href: "#" },
 ];
 
 // Reusable MenuItem Component
