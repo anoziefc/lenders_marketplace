@@ -1,12 +1,18 @@
 @import "tailwindcss";
+
 :root {
   --background: #ffffff;
   --foreground: #FFFCF7;
 }
 
-a.blue{
+a.blue {
   color: blue;
 }
+
+@theme {
+  --color-primary: #055F5B
+}
+
 /*
 
 @theme inline {

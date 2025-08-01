@@ -12,12 +12,12 @@ interface NextButtonProps {
 const Button: React.FC<NextButtonProps> = ({ value, onClick, next, cls }) => {
   return (
     <button
-      className={`w-full cursor-pointer py-3 px-6  text-gray-600 text-lg font-semibold rounded-full border-2 shadow-md
+      className={`w-full cursor-pointer py-3 px-6  text-lg font-semibold rounded-full border-2 shadow-md
                  flex items-center justify-center space-x-2
                  focus:outline-none focus:ring-2  focus:ring-opacity-50
                  transition duration-300 ease-in-out ${
-                   cls ??
-                   "bg-pink-200 border-gray-400 hover:bg-pink-300 focus:ring-pink-500"
+                   cls ||
+                   "bg-pink-200 text-gray-600 border-gray-400 hover:bg-pink-300 focus:ring-pink-500"
                  } `}
       onClick={onClick}
     >
