@@ -1,10 +1,22 @@
-from backend.cache import redis_client, LENDER_CACHE_TTL_SECONDS
+from backend.cache import redis_client
 from backend.db import get_storage
-from backend.models import ContactForm, LoanResponse, LoanRequest, LoanProduct, RequestLenderResponse, SubmitContactResponse
+from backend.models import (
+    ContactForm,
+    LoanRequest,
+    RequestLenderResponse,
+    SubmitContactResponse
+)
+from backend.smtp_connection import send_email
+from backend.utils import (
+    build_filters,
+    build_lenders_response,
+    cache_lenders_data,
+    fetch_lenders,
+    parse_loan_request,
+    submit_spreadsheet
+)
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy import or_
-from sqlalchemy.orm import joinedload, Session
-from uuid import uuid4
+from sqlalchemy.orm import Session
 
 import json
 
@@ -15,66 +27,21 @@ router = APIRouter()
 @router.post("/get-lenders", response_model=RequestLenderResponse)
 def request_lender(loanrequest: LoanRequest, db: Session = Depends(get_storage)):
     try:
-        requested_amount = float(loanrequest.amount)
-        turnover = float(loanrequest.turn_over)
-        trading_years = int(loanrequest.years_of_trading)
-        is_homeowner = loanrequest.home_owner.upper()
+        requested_amount, turnover, trading_years, is_homeowner = parse_loan_request(loanrequest)
+        filters = build_filters(requested_amount, turnover, trading_years, is_homeowner)
 
-        filters = [
-            LoanProduct.min_lend <= requested_amount,
-            LoanProduct.max_lend >= requested_amount,
-            LoanProduct.min_turnover <= turnover,
-            LoanProduct.min_trading_history <= trading_years,
-        ]
-
-        if is_homeowner == "Y":
-            filters.append(
-                or_(
-                    LoanProduct.homeowner_required == 'Y',
-                    LoanProduct.homeowner_required == None
-                )
-            )
-        else:
-            filters.append(
-                LoanProduct.min_without_home <= requested_amount
-            )
+        lenders = fetch_lenders(db, filters)
+        lenders_list = build_lenders_response(lenders)
         
-        lenders = db.query_db(
-            LoanProduct,
-            filters=filters,
-            options=[
-                joinedload(LoanProduct.lender)
-            ]
-        )
-
-        lenders_list = [
-            LoanResponse(
-                id=str(uuid4()),
-                lender_name=lender.lender.name,
-                lower_lending_rate=lender.min_lend,
-                higher_lending_rate=lender.max_lend,
-                per_month_or_factor_rate= lender.per_month_or_factor_rate,
-                min_term_months=lender.min_term_months,
-                max_term_months=lender.max_term_months,
-                payout_time=lender.payout
-            ).model_dump()
-            for lender in lenders
-        ]
-
-        token = str(uuid4())
-
-        redis_client.setex(
-            token,
-            LENDER_CACHE_TTL_SECONDS,
-            json.dumps(lenders_list)
-        )
+        token = cache_lenders_data(loanrequest, lenders_list)
 
         return {
             "lenders_list": lenders_list,
             "token": token
         }
+
     except Exception as e:
-        print("Error creating product:", e)
+        print("Error in request_lender:", e)
         raise HTTPException(status_code=500, detail="Failed")
 
 
@@ -85,6 +52,14 @@ def submit_contact(form: ContactForm):
         raise HTTPException(status_code=404, detail="Lenders list not found or expired.")
 
     redis_client.delete(form.token)
+    data = json.loads(raw)
+    send = {
+        "first_name": form.first_name,
+        "email": form.email,
+        "data": data
+    }
+    submit_spreadsheet(data, form)
+    send_email(send)
 
     return {
         "message": "Lenders sent to email successfully.",

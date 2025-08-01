@@ -3,7 +3,7 @@ from sqlalchemy import Column, String, Integer, ForeignKey, Numeric
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
-from typing import Optional, List
+from typing import Optional, List, Dict
 from uuid import uuid4
 
 
@@ -11,7 +11,8 @@ Base = declarative_base()
 
 
 class ContactForm(BaseModel):
-    name: str = Field(..., alias="Name")
+    first_name: str = Field(..., alias="First Name")
+    last_name: str = Field(..., alias="Last Name")
     email: EmailStr = Field(..., alias="Email Address")
     phone_number: str = Field(..., alias="Phone Number")
     token: str = Field(..., alias="Token")
@@ -80,8 +81,10 @@ class LoanRequest(BaseModel):
 class LoanResponse(BaseModel):
     id: str = Field(..., alias="ID")
     lender_name: str = Field(..., alias="Lender Name")
-    lower_lending_rate: Optional[int] = Field(None, alias="Lowest Rates")
-    higher_lending_rate: Optional[int] = Field(None, alias="Highest Rates")
+    min_lending: Optional[int] = Field(None, alias="Minimum Lending Amount")
+    max_lending: Optional[int] = Field(None, alias="Maximum Lending Amount")
+    lower_lending_rate: Optional[float] = Field(None, alias="Lowest Rates")
+    higher_lending_rate: Optional[float] = Field(None, alias="Highest Rates")
     per_month_or_factor_rate: Optional[str] = Field(None, alias="Per Month or Factor Rate")
     min_term_months: Optional[int] = Field(None, alias="Minimum Loan Term (Months)")
     max_term_months: Optional[int] = Field(None, alias="Maximum Loan Term (Months)")
@@ -96,7 +99,15 @@ class RequestLenderResponse(BaseModel):
     lenders_list: List[LoanResponse] = Field(..., alias="List of Potential Lenders")
     token: str = Field(..., alias="Token")
 
+    class Config:
+        validate_by_name = True
+        populate_by_name = True
+
 
 class SubmitContactResponse(BaseModel):
     message: str = Field(..., alias="Response Message")
-    content: List[LoanResponse] = Field(..., alias="List of Potential Lenders")
+    content: Dict = Field(..., alias="List of Potential Lenders")
+
+    class Config:
+        validate_by_name = True
+        populate_by_name = True

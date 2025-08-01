@@ -19,7 +19,12 @@ class Storage():
 
     def __init__(self):
         self._engine = create_engine(SQLALCHEMY_DATABASE_URL)
-        self._session = sessionmaker(autocommit=False, autoflush=False, bind=self._engine, expire_on_commit=False)
+        self._session = sessionmaker(
+            autocommit=False,
+            autoflush=False,
+            bind=self._engine,
+            expire_on_commit=False
+        )
         Base.metadata.create_all(bind=self._engine)
 
     @contextmanager
