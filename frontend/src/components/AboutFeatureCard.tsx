@@ -1,11 +1,5 @@
 import react from "react";
 
-// Reusable FeatureCard Component
-interface FeatureCardProps {
-  icon: React.ReactNode; // Can be an SVG, an image, or any React node
-  title: string;
-  description: string;
-}
 
 const AboutFeatureCard: React.FC<FeatureCardProps> = ({
   icon,

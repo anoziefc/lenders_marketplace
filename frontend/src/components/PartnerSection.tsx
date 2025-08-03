@@ -1,12 +1,6 @@
 import Image from "next/image";
 import React from "react";
 
-// Define the props for the NumberedStep component
-interface NumberedStepProps {
-  number: number;
-  title: string;
-  description: string;
-}
 
 /**
  * Reusable NumberedStep component for displaying a numbered item with a title and description.
@@ -21,7 +15,7 @@ const NumberedStep: React.FC<NumberedStepProps> = ({
   return (
     <div className="flex items-start mb-6">
       {/* Number circle */}
-      <div className="flex-shrink-0 w-8 h-8 md:w-10 md:h-10 bg-teal-700 text-white rounded-full flex items-center justify-center font-bold text-lg md:text-base shadow-md font-bold">
+      <div className="flex-shrink-0 w-8 h-8 md:w-10 md:h-10 bg-teal-700 text-white rounded-full flex items-center justify-center font-bold text-lg md:text-base shadow-md">
         {number}
       </div>
       {/* Text content */}
@@ -37,18 +31,6 @@ const NumberedStep: React.FC<NumberedStepProps> = ({
   );
 };
 
-// Define the props for the main BusinessFinanceSection component
-interface BusinessFinanceSectionProps {
-  title: string;
-  subtitle: string;
-  steps: Array<{
-    number: number;
-    title: string;
-    description: string;
-  }>;
-  imageUrl: string;
-  imageAlt: string;
-}
 
 /**
  * Main BusinessFinanceSection component that displays a two-column layout

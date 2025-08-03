@@ -2,10 +2,6 @@ import Image from "next/image";
 import React from "react";
 
 // Define the props for the StatisticCard component
-interface StatisticCardProps {
-  value: string;
-  label: string;
-}
 
 // Reusable StatisticCard component
 const StatisticCard: React.FC<StatisticCardProps> = ({ value, label }) => (
@@ -17,13 +13,7 @@ const StatisticCard: React.FC<StatisticCardProps> = ({ value, label }) => (
   </div>
 );
 
-// Define the props for the TestimonialCard component
-interface TestimonialCardProps {
-  quote: string;
-  author: string;
-  title: string;
-  imageUrl: string; // Add imageUrl prop for the main image
-}
+
 
 // Reusable TestimonialCard component
 const TestimonialCard: React.FC<TestimonialCardProps> = ({

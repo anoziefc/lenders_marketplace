@@ -32,18 +32,7 @@ const DropdownArrowIcon: React.FC<{ isOpen?: boolean }> = ({ isOpen }) => (
   </svg>
 );
 
-// Define types for navigation items
-interface SubMenuItem {
-  name: string;
-  href: string;
-}
 
-interface NavItem {
-  name: string;
-  href?: string;
-  dropdown?: boolean;
-  submenu?: SubMenuItem[];
-}
 
 // Data for navigation items
 const navItems: NavItem[] = [
@@ -65,12 +54,6 @@ const navItems: NavItem[] = [
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
 ];
-
-// Reusable MenuItem Component
-interface MenuItemProps {
-  item: NavItem;
-  isMobile?: boolean;
-}
 
 const MenuItem: React.FC<MenuItemProps> = ({ item, isMobile = false }) => {
   const [isHovered, setIsHovered] = useState(false);

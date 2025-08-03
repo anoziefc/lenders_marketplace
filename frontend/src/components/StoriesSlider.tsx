@@ -2,15 +2,6 @@
 import Image from "next/image";
 import React, { useState } from "react";
 
-// Define the type for a testimonial
-interface Testimonial {
-  id: number;
-  logo: string; // URL or path to the client logo
-  quote: string;
-  author: string;
-  title: string;
-}
-
 // TestimonialCard Component: Displays a single client testimonial
 const TestimonialCard: React.FC<Testimonial> = ({
   logo,

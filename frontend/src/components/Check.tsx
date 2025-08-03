@@ -1,11 +1,5 @@
 import React from "react";
 
-interface CheckProps {
-  purpose: string;
-  fundingPurpose: string;
-  handlePurposeChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
-
 const Check = ({ purpose, fundingPurpose, handlePurposeChange }: CheckProps) => {
   return (
     <label
@@ -14,7 +8,7 @@ const Check = ({ purpose, fundingPurpose, handlePurposeChange }: CheckProps) => 
                             ${
                               fundingPurpose === purpose
                                 ? "border-2 border-blue-500 bg-blue-50"
-                                : "border-2 border-gray-200 hover:bg-gray-50"
+                                : ""
                             }`}
     >
       <input

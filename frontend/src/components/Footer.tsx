@@ -2,11 +2,7 @@ import React from "react";
 import { Linkedin, Twitter, Instagram } from "lucide-react"; // Using lucide-react for icons
 import Image from "next/image";
 
-// Define the props for the FooterSection component
-interface FooterSectionProps {
-  title: string;
-  links: { name: string; href: string }[];
-}
+
 
 /**
  * Reusable FooterSection component for displaying a column of links.
@@ -32,12 +28,6 @@ const FooterSection: React.FC<FooterSectionProps> = ({ title, links }) => {
   );
 };
 
-// Define the props for the SocialIcon component
-interface SocialIconProps {
-  href: string;
-  icon: React.ReactNode; // ReactNode allows passing Lucide icons directly
-  ariaLabel: string; // Accessibility label for the icon
-}
 
 /**
  * Reusable SocialIcon component for displaying a social media icon.

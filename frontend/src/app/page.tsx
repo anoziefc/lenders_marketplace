@@ -3,10 +3,7 @@ import BusinessesFinanceSection from "@/components/BusinessFinanaceSection";
 import Form from "@/components/Form";
 import HomeFaq from "@/components/HomeFaq";
 import HomeHero from "@/components/HomeHero";
-import HomeVideo, {
-  type HeroSectionProps,
-  type LenderLogo,
-} from "@/components/HomeVideo";
+import HomeVideo from "@/components/HomeVideo";
 import PartnerSection from "@/components/PartnerSection";
 import StoriesSlide from "@/components/StoriesSlider";
 import TakeControlRibbon from "@/components/TakeControlRibbon";

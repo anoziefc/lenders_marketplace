@@ -1,17 +1,17 @@
 "use client";
 import React from "react";
-// This ensures type safety when using TypeScript (TSX).
-interface NextButtonProps {
-  onClick: () => void;
-  next?: boolean;
-  value: string;
-  cls?: string;
-}
 
 // The reusable NextButton functional component.
-const Button: React.FC<NextButtonProps> = ({ value, onClick, next, cls }) => {
+const Button: React.FC<NextButtonProps> = ({
+  value,
+  onClick,
+  next,
+  cls,
+  disabled = false,
+}) => {
   return (
     <button
+      disabled={disabled}
       className={`w-full cursor-pointer py-3 px-6  text-lg font-semibold rounded-full border-2 shadow-md
                  flex items-center justify-center space-x-2
                  focus:outline-none focus:ring-2  focus:ring-opacity-50

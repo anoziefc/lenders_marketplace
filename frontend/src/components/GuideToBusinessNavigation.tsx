@@ -2,12 +2,6 @@
 import Link from "next/link";
 import React, { useState } from "react";
 
-interface NavItem {
-  id: number;
-  href: string;
-  text: string;
-  status: string;
-}
 
 // Main App component that renders the NavigationMenu
 export default function GuideToBusinessNavigation({

@@ -1,13 +1,6 @@
 import React from "react";
 import JobCard from "./JobCard";
 
-// Define the structure for a job listing
-export interface JobListing {
-  title: string;
-  description: string;
-  type: string; // e.g., "Business", "Engineering"
-  location: string; // e.g., "London, United Kingdom"
-}
 
 
 // Main JobOpeningsSection Component
