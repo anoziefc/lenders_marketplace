@@ -1,26 +1,27 @@
 import Router from "next/router";
 import axiosInstance from "./axiosInstance";
+import {redirect} from "next/navigation";
 
 
-export const fundingOnSubmit = async ( fundingFormData: FundingFormData ) => {
-	try {
-		await axiosInstance.post( "/get-lenders", fundingFormData );
-		Router.push( "/results" );
-		console.log( fundingFormData );
+export const fundingOnSubmit = async (fundingFormData: FundingFormData) => {
 
-	} catch ( error ) {
-		console.error( error );
-	}
-
+    /*return axiosInstance.post("/get-lenders", fundingFormData)
+         .then((response) => {
+             if (response) redirect("/results?id=" + response.data.id)
+         })
+         .catch((err) =>
+             console.log(err)
+         );*/
+    return new Promise((resolve, reject) => (
+        setTimeout(() => {
+            resolve({data: {id: "123"}})
+        }, 1000)
+    )).then((response) => {
+            console.log(response?.data.id)
+            // redirect(`/results?id=${response?.data.id}`)
+        window.location.replace(`/results?id=${response?.data.id}`)
+        }
+    ).catch((err) =>
+        console.error(err))
 };
 
-export const submitContact = ( contactInfo: ContactInfo ) => {
-	try {
-		axiosInstance.post( "/get-lenders",
-			contactInfo
-		);
-	} catch ( error ) {
-		console.error( error );
-	}
-
-};

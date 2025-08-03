@@ -1,3 +1,4 @@
+"use client"
 import ContactSection from "@/components/ContactSection";
 import Form from "@/components/Form";
 import NoResultsSection from "@/components/NoResultsSection";
@@ -5,8 +6,14 @@ import Rating from "@/components/Ratings";
 import TopBar from "@/components/TopBar";
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from 'next/navigation'
 
 const Page = () => {
+  const searchParams = useSearchParams()
+
+  const search = searchParams.get('id')
+
+
   return (
     <div
       className={"flex flex-col gap-4 items-center justify-center min-h-screen"}
