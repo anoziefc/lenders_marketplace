@@ -1,6 +1,9 @@
 import React from "react";
+import ContactForm from "@/components/ContactForm";
 
 const ContactSection: React.FC = () => {
+
+
     return (
         <section
             className="bg-[#2D6A66] w-full text-white py-16 px-4 sm:px-6 lg:px-8 font-sans relative overflow-hidden">
@@ -87,104 +90,7 @@ const ContactSection: React.FC = () => {
 
                 {/* Right side: Contact Form */}
                 <div className="lg:w-1/2 bg-white p-8 rounded-xl shadow-lg w-full max-w-xl">
-                    <form className="space-y-6">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <label htmlFor="fullName" className="sr-only">
-                                    Full Name
-                                </label>
-                                <input
-                                    type="text"
-                                    id="fullName"
-                                    name="fullName"
-                                    placeholder="Full Name"
-                                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="emailAddress" className="sr-only">
-                                    Email Address
-                                </label>
-                                <input
-                                    type="email"
-                                    id="emailAddress"
-                                    name="emailAddress"
-                                    placeholder="Email Address"
-                                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
-                                />
-                            </div>
-                        </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <label htmlFor="phoneNumber" className="sr-only">
-                                    Phone Number
-                                </label>
-                                <input
-                                    type="tel"
-                                    id="phoneNumber"
-                                    name="phoneNumber"
-                                    placeholder="Phone Number"
-                                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="businessName" className="sr-only">
-                                    Business Name
-                                </label>
-                                <input
-                                    type="text"
-                                    id="businessName"
-                                    name="businessName"
-                                    placeholder="Business Name"
-                                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
-                                />
-                            </div>
-                        </div>
-                        <div>
-                            <label htmlFor="subject" className="sr-only">
-                                Subject
-                            </label>
-                            <input
-                                type="text"
-                                id="subject"
-                                name="subject"
-                                placeholder="Subject"
-                                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="howCanWeHelp" className="sr-only">
-                                How can we help?
-                            </label>
-                            <textarea
-                                id="howCanWeHelp"
-                                name="howCanWeHelp"
-                                rows={5}
-                                placeholder="How can we help?"
-                                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800 resize-y"
-                            ></textarea>
-                        </div>
-                        <button
-                            type="submit"
-                            className="w-full bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center"
-                        >
-                            Send Message
-                            <svg
-                                className="w-5 h-5 ml-2"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M14 5l7 7m0 0l-7 7m7-7H3"
-                                ></path>
-                            </svg>
-                        </button>
-                    </form>
+                    <ContactForm/>
                 </div>
             </div>
         </section>

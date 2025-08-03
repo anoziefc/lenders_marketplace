@@ -1,27 +1,22 @@
-import Router from "next/router";
-import axiosInstance from "./axiosInstance";
-import {redirect} from "next/navigation";
+import axiosInstance from "@/lib/axiosInstance";
 
 
-export const fundingOnSubmit = async (fundingFormData: FundingFormData) => {
+export const fundingOnSubmit = (fundingFormData: FundingFormData) => {
 
-    /*return axiosInstance.post("/get-lenders", fundingFormData)
-         .then((response) => {
-             if (response) redirect("/results?id=" + response.data.id)
-         })
-         .catch((err) =>
-             console.log(err)
-         );*/
-    return new Promise((resolve, reject) => (
-        setTimeout(() => {
-            resolve({data: {id: "123"}})
-        }, 1000)
-    )).then((response) => {
-            console.log(response?.data.id)
-            // redirect(`/results?id=${response?.data.id}`)
-        window.location.replace(`/results?id=${response?.data.id}`)
-        }
-    ).catch((err) =>
-        console.error(err))
+    axiosInstance.post("/get-lenders", fundingFormData)
+        .then((response) => {
+            if (response) window.location.replace("/results?id=" + response.data.id);
+        })
+        .catch((err) =>
+            console.log(err)
+        );
 };
 
+export const contactOnSubmit = async (contactIfo: ContactFormData) => {
+    try {
+        let response = await axiosInstance.post("/submit-contact", contactIfo);
+        if (response) window.location.reload();
+    } catch (err) {
+        return console.log(err);
+    }
+};
