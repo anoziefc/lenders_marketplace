@@ -1,11 +1,5 @@
 import React from "react";
 
-// Reusable StatCard Component
-interface StatCardProps {
-  value: string;
-  description: string;
-}
-
 const StatCard: React.FC<StatCardProps> = ({ value, description }) => {
   return (
     <div className="flex flex-col items-center text-center p-4">

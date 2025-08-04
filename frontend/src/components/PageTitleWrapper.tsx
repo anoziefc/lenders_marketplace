@@ -1,8 +1,5 @@
 import React from "react";
-interface TitleWrapperProps {
-  title: string;
-  summary: string;
-}
+
 
 // The main TitleWrapper component that renders the banner.
 const TitleWrapper: React.FC<TitleWrapperProps> = ({ title, summary }) => {

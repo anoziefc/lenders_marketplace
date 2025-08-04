@@ -3,11 +3,6 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import React from "react";
 
-// Define the structure for a breadcrumb item.
-interface BreadcrumbItem {
-  label: string;
-  path: string;
-}
 
 // The Breadcrumb functional component.
 const Breadcrumb: React.FC = () => {

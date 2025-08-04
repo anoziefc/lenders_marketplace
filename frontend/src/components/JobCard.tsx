@@ -1,10 +1,5 @@
 import type { JobListing } from "./JobOpeningsSection";
 
-// Reusable JobCard Component
-interface JobCardProps {
-  job: JobListing;
-}
-
 const JobCard: React.FC<JobCardProps> = ({ job }) => {
   return (
     <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col">

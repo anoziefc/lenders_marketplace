@@ -1,11 +1,6 @@
 import Image from "next/image";
-import type { TeamMember } from "./TeamSection";
 import Link from "next/link";
 
-// Reusable TeamMemberCard Component
-interface TeamMemberCardProps {
-  member: TeamMember;
-}
 
 const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ member }) => {
   return (

@@ -5,13 +5,6 @@ import React from "react";
 import TeamMemberCard from "./TeamMemberCard";
 import Button from "./Button";
 
-// Define the structure for a team member
-export interface TeamMember {
-  name: string;
-  title: string;
-  description?: string; // Optional description for some roles
-  imageSrc: string; // Placeholder for image URL
-}
 
 
 
