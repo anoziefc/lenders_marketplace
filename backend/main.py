@@ -21,7 +21,8 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     lifespan=lifespan,
-    default_response_class=ORJSONResponse
+    default_response_class=ORJSONResponse,
+    response_model_by_alias=False
 )
 
 app.add_middleware(

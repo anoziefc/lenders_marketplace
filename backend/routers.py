@@ -3,8 +3,8 @@ from backend.db import get_storage
 from backend.models import (
     ContactForm,
     LoanRequest,
-    RequestLenderResponse,
-    SubmitContactResponse
+    ResultsResponse,
+    SubmitLendersResponse
 )
 from backend.smtp_connection import send_email
 from backend.utils import (
@@ -15,8 +15,9 @@ from backend.utils import (
     parse_loan_request,
     submit_spreadsheet
 )
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
+from typing import Dict
 
 import json
 
@@ -24,7 +25,7 @@ import json
 router = APIRouter()
 
 
-@router.post("/get-lenders", response_model=SubmitContactResponse)
+@router.post("/get-lenders", response_model=SubmitLendersResponse, response_model_by_alias=False)
 def request_lender(loanrequest: LoanRequest, db: Session = Depends(get_storage)):
     try:
         requested_amount, turnover, trading_years, is_homeowner = parse_loan_request(loanrequest)
@@ -45,21 +46,25 @@ def request_lender(loanrequest: LoanRequest, db: Session = Depends(get_storage))
         raise HTTPException(status_code=500, detail="Failed")
 
 
-@router.post("/results", response_model=SubmitContactResponse)
-def request_lender(token: str):
+@router.get("/results", response_model=ResultsResponse, response_model_by_alias=False)
+def request_lender(token: str = Query(..., description="Token used to fetch lender data")):
     raw = redis_client.get(token)
     if not raw:
         raise HTTPException(status_code=404, detail="Lenders list not found or expired.")
-
+    
     data = json.loads(raw)
+    send_data = [data["lenders_list"][0] if len(data["lenders_list"]) >= 1 else data["lenders_list"]]
+
     
     return {
         "message": "Lenders fetched successfully.",
-        "content": data
+        "content": {
+            "lenders_list": send_data
+        }
     }
 
 
-@router.post("/submit-contact", response_model=SubmitContactResponse)
+@router.post("/submit-contact", response_model=Dict, response_model_by_alias=False)
 def submit_contact(form: ContactForm):
     raw = redis_client.get(form.token)
     if not raw:
@@ -77,5 +82,4 @@ def submit_contact(form: ContactForm):
 
     return {
         "message": "Lenders sent to email successfully.",
-        "content": data
     }

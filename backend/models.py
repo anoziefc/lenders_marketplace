@@ -104,9 +104,18 @@ class RequestLenderResponse(BaseModel):
         populate_by_name = True
 
 
-class SubmitContactResponse(BaseModel):
+class ResultsResponse(BaseModel):
     message: str = Field(..., alias="Response Message")
     content: Dict = Field(..., alias="List of Potential Lenders")
+
+    class Config:
+        validate_by_name = True
+        populate_by_name = True
+
+
+class SubmitLendersResponse(BaseModel):
+    message: str = Field(..., alias="Response Message")
+    token: str = Field(..., alias="Token")
 
     class Config:
         validate_by_name = True

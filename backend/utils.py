@@ -16,8 +16,8 @@ SHEET_URL = os.getenv("SHEET_URL")
 def parse_loan_request(loanrequest: LoanRequest) -> Set:
     requested_amount = float(loanrequest.amount)
     turnover = float(loanrequest.turn_over)
-    trading_years = int(loanrequest.years_of_trading)
-    is_homeowner = loanrequest.home_owner.upper()
+    trading_years = int(loanrequest.years_of_trading) 
+    is_homeowner = "Y" if loanrequest.home_owner == "Yes" else "N"
     return requested_amount, turnover, trading_years, is_homeowner
 
 def build_filters(

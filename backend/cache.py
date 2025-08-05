@@ -8,4 +8,4 @@ redis_client = redis.Redis(
     decode_responses=True
 )
 
-LENDER_CACHE_TTL_SECONDS = 15 * 60
+LENDER_CACHE_TTL_SECONDS = 60 * 60
