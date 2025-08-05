@@ -1,5 +1,3 @@
-import react from "react";
-
 
 const AboutFeatureCard: React.FC<FeatureCardProps> = ({
   icon,

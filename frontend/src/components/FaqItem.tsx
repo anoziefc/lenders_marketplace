@@ -1,7 +1,5 @@
 "use client";
 import { Plus } from "lucide-react";
-// components/Faq/FaqItem.tsx
-import Image from "next/image";
 import React, { useState } from "react";
 
 type FaqItemProps = {

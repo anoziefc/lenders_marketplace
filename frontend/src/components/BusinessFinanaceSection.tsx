@@ -37,7 +37,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
     <div className="max-w-sm p-4 flex flex-col justify-between lg:-ml-36 lg:mt-32">
       <div className="relative p-6 bg-gray-50 rounded-lg shadow-inner">
         <p className="text-gray-700 italic text-base md:text-lg leading-relaxed">
-          "{quote}"
+          &quot;{quote}&quot;
         </p>
       </div>
       <div className="mt-4 text-left">
@@ -74,7 +74,7 @@ const BusinessesFinanceSection: React.FC = () => {
             </h2>
             <p className="text-gray-600 text-base md:text-lg leading-relaxed">
               Our platform is specifically designed to provide for certain
-              businesses. See if it'll work for you.
+              businesses. See if it&quot;ll work for you.
             </p>
 
             <div className="grid grid-cols-2 gap-4 md:gap-6">

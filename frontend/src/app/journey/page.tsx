@@ -1,7 +1,6 @@
 import Form from "@/components/Form";
 import Rating from "@/components/Ratings";
 import TopBar from "@/components/TopBar";
-import Image from "next/image";
 import Link from "next/link";
 
 const Page = () => {

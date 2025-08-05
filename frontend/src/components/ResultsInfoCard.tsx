@@ -20,7 +20,6 @@ const ResultsInfoCard: React.FC<{ result: LendersResultsResponse | null }> = ({r
                 {/* Left section: Text content and button */}
 
                 {result && result?.content?.lenders_list[0] ? <ResultsSummaryCard
-                    fundersCount={6}
                     rateDescription="Bank of England Base Rate:"
                     baseRate="4.75%"
                     nextMeetingMessage="Next meeting: August 7, 2025. Rates are unlikely to change before then."

@@ -9,7 +9,7 @@ const ContactForm: React.FC<{ token: string | null }> = ({token}) => {
         last_name: "",
         phone_number: "",
         email: "",
-        token
+        token: token || ""
     };
     const [formData, setFormData] = useState(initialFormData);
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,7 +29,7 @@ const ContactForm: React.FC<{ token: string | null }> = ({token}) => {
                 alert("Please fill in all fields.");
                 return;
             }
-            const response = await contactOnSubmit(formData, token);
+            const response = await contactOnSubmit(formData);
             if (response) setFormData(initialFormData);
         } catch (err) {
             console.error(err);

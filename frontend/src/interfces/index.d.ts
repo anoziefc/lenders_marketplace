@@ -73,15 +73,9 @@ declare interface FormProps {
     currentForm: number;
     setCurrentForm: (arg0: number) => void;
     formValue: FundingFormData;
-    setFormValue: any;
+    setFormValue: React.Dispatch<React.SetStateAction<FundingFormData>>;
 }
 
-declare interface NavItem {
-    id: number;
-    href: string;
-    text: string;
-    status: string;
-}
 
 // Reusable JobCard Component
 declare interface JobCardProps {
@@ -102,11 +96,25 @@ declare interface SubMenuItem {
     href: string;
 }
 
+declare interface GuideToBusinessNavigationNavItem {
+    id: number;
+    href: string;
+    text: string;
+    status: string;
+}
+
 declare interface NavItem {
     name: string;
     href?: string;
     dropdown?: boolean;
     submenu?: SubMenuItem[];
+}
+
+declare interface NavItem2 {
+    id: number;
+    href: string;
+    text: string;
+    status: string;
 }
 
 // Reusable MenuItem Component
@@ -214,4 +222,11 @@ declare interface LendersResultsResponse {
             payout_time: string;
         }>;
     };
+}
+
+declare interface FunderSummaryProps {
+    rateDescription: string;
+    baseRate: string;
+    nextMeetingMessage: string;
+    bankIconUrl: string;
 }

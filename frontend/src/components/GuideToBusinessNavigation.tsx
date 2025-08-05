@@ -7,7 +7,7 @@ import React, { useState } from "react";
 export default function GuideToBusinessNavigation({
   initialItems,
 }: {
-  initialItems: NavItem[];
+  initialItems: GuideToBusinessNavigationNavItem[];
 }) {
   const [navItems, setNavItems] = useState(initialItems);
 

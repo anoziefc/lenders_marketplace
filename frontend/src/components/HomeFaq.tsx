@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import FaqItem from "./FaqItem";
-import Button from "./Button";
 
 const faqData = [
   {

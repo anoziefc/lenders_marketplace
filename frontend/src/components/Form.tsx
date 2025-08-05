@@ -18,7 +18,7 @@ const MostImportant = ({
                            currentForm,
                            setCurrentForm,
                            formValue,
-                           setFormValue,
+                           setFormValue
                        }: FormProps) => {
     const [fieldsFilled, setFieldsFilled] = useState(false);
     const [importance, setImportant] = useState<string>(formValue.importance);
@@ -30,7 +30,7 @@ const MostImportant = ({
         "Speed",
         "Price",
         "Personal Service",
-        "Impaired credit history",
+        "Impaired credit history"
     ];
     useEffect(() => {
         if (importance) {
@@ -88,7 +88,7 @@ const AboutYou = ({
                       currentForm,
                       setCurrentForm,
                       formValue,
-                      setFormValue,
+                      setFormValue
                   }: FormProps) => {
     const router = useRouter();
     const [turn_over, setAnnualTurnover] = useState<string>(
@@ -118,7 +118,7 @@ const AboutYou = ({
             setAnnualTurnover("£" + e.target.value);
         }
     };
-    const threeYears = ["Yes", "No"];
+
     const inUk = ["Yes", "No"];
 
     useEffect(() => {
@@ -137,7 +137,7 @@ const AboutYou = ({
 
     const handleNext = async () => {
         try {
-            const {token} = await fundingOnSubmit(formValue);
+            const token = (await fundingOnSubmit(formValue))?.token;
             if (token) {
                 // router.push({pathname: `/result`, query: {token: token}});
                 router.push(`/results?d=${token}`);
@@ -231,7 +231,7 @@ const HowMuch = ({
                      currentForm,
                      setCurrentForm,
                      formValue,
-                     setFormValue,
+                     setFormValue
                  }: FormProps) => {
     const [amount, setFundingAmount] = useState<string>(
         formValue.amount.toString()
@@ -276,7 +276,7 @@ const HowMuch = ({
         "Cashflow",
         "Refinancing",
         "Asset Finance",
-        "Other (eg. Acquisition, MBO)",
+        "Other (eg. Acquisition, MBO)"
     ];
 
     const assetTypes = [
@@ -284,7 +284,7 @@ const HowMuch = ({
         "Plant & Machinery",
         "Equipment",
         "Refurbishments",
-        "Other",
+        "Other"
     ];
 
     const handleNext = () => {

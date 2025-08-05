@@ -331,8 +331,8 @@ const page = () => {
                 - from issuing the invoice to collection of payment
               </li>
               <li>
-                An ALIE Form (stands for "assets, liabilities, income,
-                expenditure")
+                An ALIE Form (stands for &quot;assets, liabilities, income,
+                expenditure&quot;)
               </li>
             </ul>
             <p>
