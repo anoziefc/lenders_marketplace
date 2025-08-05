@@ -1,22 +1,48 @@
 import axiosInstance from "@/lib/axiosInstance";
 
 
-export const fundingOnSubmit = (fundingFormData: FundingFormData) => {
-
-    axiosInstance.post("/get-lenders", fundingFormData)
-        .then((response) => {
-            if (response) window.location.replace("/results?id=" + response.data.id);
-        })
-        .catch((err) =>
-            console.log(err)
-        );
+export const fundingOnSubmit = async (fundingFormData: FundingFormData) => {
+    try {
+        const response = await axiosInstance.post("/get-lenders", fundingFormData);
+        if (response) {
+            return response.data;
+        } else {
+            return null;
+        }
+    } catch (err) {
+        console.error(err);
+        return null;
+    }
 };
 
 export const contactOnSubmit = async (contactIfo: ContactFormData) => {
     try {
         let response = await axiosInstance.post("/submit-contact", contactIfo);
-        if (response) window.location.reload();
+        // todo: get token from response
+        // if (response) window.location.reload();
+        if (response) {
+            return response.data;
+        } else {
+            return null;
+        }
     } catch (err) {
-        return console.log(err);
+        console.log(err);
+        return null;
+    }
+};
+
+export const getResults = async (token: string) => {
+    try {
+        let response = await axiosInstance.get("/get-lenders", {
+            params: {id: token}
+        });
+        if (response) {
+            return response.data;
+        } else {
+            return null;
+        }
+    } catch (err) {
+        console.log(err);
+        return null;
     }
 };
