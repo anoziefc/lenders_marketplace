@@ -24,7 +24,7 @@ import json
 router = APIRouter()
 
 
-@router.post("/get-lenders", response_model=RequestLenderResponse)
+@router.post("/get-lenders", response_model=SubmitContactResponse)
 def request_lender(loanrequest: LoanRequest, db: Session = Depends(get_storage)):
     try:
         requested_amount, turnover, trading_years, is_homeowner = parse_loan_request(loanrequest)
@@ -36,13 +36,27 @@ def request_lender(loanrequest: LoanRequest, db: Session = Depends(get_storage))
         token = cache_lenders_data(loanrequest, lenders_list)
 
         return {
-            "lenders_list": lenders_list,
+            "message": "Lenders list created successfully.",
             "token": token
         }
 
     except Exception as e:
         print("Error in request_lender:", e)
         raise HTTPException(status_code=500, detail="Failed")
+
+
+@router.post("/results", response_model=SubmitContactResponse)
+def request_lender(token: str):
+    raw = redis_client.get(token)
+    if not raw:
+        raise HTTPException(status_code=404, detail="Lenders list not found or expired.")
+
+    data = json.loads(raw)
+    
+    return {
+        "message": "Lenders fetched successfully.",
+        "content": data
+    }
 
 
 @router.post("/submit-contact", response_model=SubmitContactResponse)
@@ -63,5 +77,5 @@ def submit_contact(form: ContactForm):
 
     return {
         "message": "Lenders sent to email successfully.",
-        "content": json.loads(raw)
+        "content": data
     }

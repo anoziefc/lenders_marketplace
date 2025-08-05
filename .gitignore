@@ -3,3 +3,4 @@ __pycache__
 .env
 fetch.py
 loan_matching.py
+.vscode
