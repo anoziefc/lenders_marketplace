@@ -1,8 +1,7 @@
 import React from "react";
 import ContactForm from "@/components/ContactForm";
 
-const ContactSection: React.FC = () => {
-
+const ContactSection: React.FC<{ token: string | null }> = ({token}) => {
 
     return (
         <section
@@ -90,7 +89,7 @@ const ContactSection: React.FC = () => {
 
                 {/* Right side: Contact Form */}
                 <div className="lg:w-1/2 bg-white p-8 rounded-xl shadow-lg w-full max-w-xl">
-                    <ContactForm/>
+                    <ContactForm token={token}/>
                 </div>
             </div>
         </section>

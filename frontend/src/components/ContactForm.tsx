@@ -3,12 +3,13 @@ import React, {useState} from "react";
 import {contactOnSubmit} from "@/lib/onSubmits";
 
 // Reusable ContactForm Component
-const ContactForm: React.FC = () => {
+const ContactForm: React.FC<{ token: string | null }> = ({token}) => {
     const initialFormData: ContactFormData = {
-        firstName: "",
-        lastName: "",
-        phoneNumber: "",
-        email: ""
+        first_name: "",
+        last_name: "",
+        phone_number: "",
+        email: "",
+        token
     };
     const [formData, setFormData] = useState(initialFormData);
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,33 +22,47 @@ const ContactForm: React.FC = () => {
         }));
     };
 
+    const handleOnSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        try {
+            if (!formData.first_name || !formData.last_name || !formData.phone_number || !formData.email || !token) {
+                alert("Please fill in all fields.");
+                return;
+            }
+            const response = await contactOnSubmit(formData, token);
+            if (response) setFormData(initialFormData);
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
     return (
         <form className="space-y-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                    <label htmlFor="firstName" className="sr-only">
+                    <label htmlFor="first_name" className="sr-only">
                         First Name
                     </label>
                     <input
                         onChange={handleOnChange}
                         required
                         type="text"
-                        id="firstName"
-                        name="firstName"
+                        id="first_name"
+                        name="first_name"
                         placeholder="First Name"
                         className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
                     />
                 </div>
                 <div>
-                    <label htmlFor="lastName" className="sr-only">
+                    <label htmlFor="last_name" className="sr-only">
                         Last Name
                     </label>
                     <input
                         onChange={handleOnChange}
                         required
                         type="text"
-                        id="lastName"
-                        name="lastName"
+                        id="last_name"
+                        name="last_name"
                         placeholder="Last Name"
                         className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
                     />
@@ -61,7 +76,7 @@ const ContactForm: React.FC = () => {
                     onChange={handleOnChange}
                     required
                     type="tel"
-                    id="phoneNumber"
+                    id="phone_number"
                     name="phoneNUmber"
                     placeholder="Phone"
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
@@ -83,10 +98,7 @@ const ContactForm: React.FC = () => {
             </div>
 
             <button
-                onClick={(e) => {
-                    e.preventDefault();
-                    return contactOnSubmit(formData);
-                }}
+                onClick={handleOnSubmit}
                 className="w-full bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center"
             >
                 Send Message

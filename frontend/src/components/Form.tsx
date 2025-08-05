@@ -3,14 +3,15 @@ import React, {useEffect, useState} from "react";
 import Button from "./Button";
 import Check from "./Check";
 import {fundingOnSubmit} from "@/lib/onSubmits";
+import {useRouter} from "next/navigation";
 
 const formData: FundingFormData = {
-    fundingAmount: 0,
-    fundingPurpose: "",
-    important: "",
-    annualTurnover: 0,
-    over3Years: false,
-    homeOwnerInUk: false,
+    amount: "",
+    reason: "",
+    importance: "",
+    turn_over: "",
+    years_of_trading: "",
+    home_owner: ""
 };
 
 const MostImportant = ({
@@ -20,7 +21,7 @@ const MostImportant = ({
                            setFormValue,
                        }: FormProps) => {
     const [fieldsFilled, setFieldsFilled] = useState(false);
-    const [important, setImportant] = useState<string>(formValue.important);
+    const [importance, setImportant] = useState<string>(formValue.importance);
 
     const handleSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
         setImportant(e.target.value);
@@ -32,16 +33,16 @@ const MostImportant = ({
         "Impaired credit history",
     ];
     useEffect(() => {
-        if (important) {
+        if (importance) {
             setFormValue((prevFormValue: FundingFormData) => ({
                 ...prevFormValue,
-                important: important,
+                importance: importance
             }));
             setFieldsFilled(true);
         } else {
             setFieldsFilled(false);
         }
-    }, [important, setFormValue]);
+    }, [importance, setFormValue]);
     const handleNext = () => {
         setCurrentForm(currentForm + 1);
     };
@@ -53,7 +54,7 @@ const MostImportant = ({
         <div className="">
             <div className="mb-8">
                 <label className="block text-xl font-semibold text-gray-800 mb-2">
-                    What&apos;s most important to you?
+                    What&apos;s most importance to you?
                 </label>
                 <p className="text-sm text-gray-500 mb-4">
                     There are loads of options. We can help you find the right one.
@@ -64,7 +65,7 @@ const MostImportant = ({
                         <Check
                             key={purpose}
                             purpose={purpose}
-                            fundingPurpose={important}
+                            reason={importance}
                             handlePurposeChange={handleSelect}
                         />
                     ))}
@@ -89,14 +90,15 @@ const AboutYou = ({
                       formValue,
                       setFormValue,
                   }: FormProps) => {
-    const [annualTurnover, setAnnualTurnover] = useState<string>(
-        formValue.annualTurnover.toString()
+    const router = useRouter();
+    const [turn_over, setAnnualTurnover] = useState<string>(
+        formValue.turn_over.toString()
     );
     const [trading3Years, setTrading3Years] = useState<string>(
-        formValue.over3Years ? "Yes" : "No"
+        formValue.years_of_trading
     );
     const [homeOwner, setHomeOwner] = useState<string>(
-        formValue.homeOwnerInUk ? "Yes" : "No"
+        formValue.home_owner
     );
     const [fieldsFilled, setFieldsFilled] = useState(false);
 
@@ -120,21 +122,31 @@ const AboutYou = ({
     const inUk = ["Yes", "No"];
 
     useEffect(() => {
-        if (annualTurnover && trading3Years && homeOwner) {
+        if (turn_over && trading3Years && homeOwner) {
             setFormValue((prevFormValue: FundingFormData) => ({
                 ...prevFormValue,
-                annualTurnover: Number(annualTurnover.toString().replace(/£|,/g, "")),
-                over3Years: trading3Years === "Yes",
-                homeOwnerInUk: homeOwner === "Yes",
+                turn_over: turn_over.toString().replace(/£|,/g, ""),
+                years_of_trading: trading3Years,
+                home_owner: homeOwner
             }));
             setFieldsFilled(true);
         } else {
             setFieldsFilled(false);
         }
-    }, [annualTurnover, homeOwner, trading3Years, setFormValue]);
+    }, [turn_over, homeOwner, trading3Years, setFormValue]);
 
-    const handleNext = () => {
-        fundingOnSubmit(formValue);
+    const handleNext = async () => {
+        try {
+            const {token} = await fundingOnSubmit(formValue);
+            if (token) {
+                // router.push({pathname: `/result`, query: {token: token}});
+                router.push(`/results?d=${token}`);
+            } else {
+                console.log("no token");
+            }
+        } catch (err) {
+            console.error(err);
+        }
     };
     const handleBack = () => {
         setCurrentForm(currentForm - 1);
@@ -145,7 +157,7 @@ const AboutYou = ({
             <div className="mb-8">
                 <h3 className="block text-xl font-semibold text-gray-800 mb-2"></h3>
                 <label
-                    htmlFor="annualTurnover"
+                    htmlFor="turn_over"
                     className="block text-xl font-semibold text-gray-800 mb-2"
                 >
                     Just a few facts and we&apos;ll provide you with some tailored
@@ -155,9 +167,9 @@ const AboutYou = ({
                     What&apos;s your annual turnover
                 </p>
                 <input
-                    type="text"
-                    id="annualTurnover"
-                    value={annualTurnover || ""}
+                    type="number"
+                    id="turn_over"
+                    value={turn_over || ""}
                     onChange={handleAmountChange}
                     onFocus={currencyAppend}
                     className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-lg text-gray-800
@@ -169,18 +181,20 @@ const AboutYou = ({
 
             <div className="mb-8">
                 <label className="block text-xl font-semibold text-gray-800 mb-2">
-                    Have you been trading longer than 3 years?
+                    How long have you been trading for? In Months
                 </label>
 
                 <div className="space-y-4">
-                    {threeYears.map((purpose) => (
-                        <Check
-                            key={purpose}
-                            purpose={purpose}
-                            fundingPurpose={trading3Years}
-                            handlePurposeChange={handleSetTrading3Years}
-                        />
-                    ))}
+                    <input
+                        type="number"
+                        id="years_of_trading"
+                        value={trading3Years || ""}
+                        onChange={handleSetTrading3Years}
+                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-lg text-gray-800
+                       focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500
+                       transition duration-200 ease-in-out"
+                        placeholder="£100,000"
+                    />
                 </div>
             </div>
             <div className="mb-8">
@@ -193,7 +207,7 @@ const AboutYou = ({
                         <Check
                             key={purpose}
                             purpose={purpose}
-                            fundingPurpose={homeOwner}
+                            reason={homeOwner}
                             handlePurposeChange={handleSetHomeOwner}
                         />
                     ))}
@@ -219,13 +233,13 @@ const HowMuch = ({
                      formValue,
                      setFormValue,
                  }: FormProps) => {
-    const [fundingAmount, setFundingAmount] = useState<string>(
-        formValue.fundingAmount.toString()
+    const [amount, setFundingAmount] = useState<string>(
+        formValue.amount.toString()
     );
     const [fieldsFilled, setFieldsFilled] = useState(false);
 
-    const [fundingPurpose, setFundingPurpose] = useState<string>(
-        formValue.fundingPurpose
+    const [reason, setFundingPurpose] = useState<string>(
+        formValue.reason
     );
     const [assetType, setAssetType] = useState<string>("");
     const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -245,19 +259,19 @@ const HowMuch = ({
     };
 
     useEffect(() => {
-        if (fundingAmount && (fundingPurpose || assetType)) {
+        if (amount && (reason || assetType)) {
             setFormValue((prevFormValue: FundingFormData) => ({
                 ...prevFormValue,
-                fundingAmount: Number(fundingAmount.toString().replace(/£|,/g, "")),
-                fundingPurpose: assetType || fundingPurpose,
+                amount: amount.toString().replace(/£|,/g, ""),
+                reason: assetType || reason
             }));
             setFieldsFilled(true);
         } else {
             setFieldsFilled(false);
         }
-    }, [assetType, fundingAmount, fundingPurpose, setFormValue]);
+    }, [assetType, amount, reason, setFormValue]);
 
-    const fundingPurposes = [
+    const reasons = [
         "Growth",
         "Cashflow",
         "Refinancing",
@@ -281,7 +295,7 @@ const HowMuch = ({
         <div className="">
             <div className="mb-8">
                 <label
-                    htmlFor="fundingAmount"
+                    htmlFor="amount"
                     className="block text-xl font-semibold text-gray-800 mb-2"
                 >
                     How much funding are you looking for?
@@ -291,8 +305,8 @@ const HowMuch = ({
                 </p>
                 <input
                     type="text"
-                    id="fundingAmount"
-                    value={fundingAmount || ""}
+                    id="amount"
+                    value={amount || ""}
                     onChange={handleAmountChange}
                     onFocus={currencyAppend}
                     className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-lg text-gray-800
@@ -311,17 +325,17 @@ const HowMuch = ({
                 </p>
 
                 <div className="space-y-4">
-                    {fundingPurposes.map((purpose) => (
+                    {reasons.map((purpose) => (
                         <Check
                             key={purpose}
                             purpose={purpose}
-                            fundingPurpose={fundingPurpose}
+                            reason={reason}
                             handlePurposeChange={handlePurposeChange}
                         />
                     ))}
                 </div>
             </div>
-            {fundingPurpose === "Asset Finance" && (
+            {reason === "Asset Finance" && (
                 <div className="mb-8">
                     <hr className="mt-8"/>
                     <label className="block text-xl font-semibold text-gray-800 mb-2">
@@ -333,7 +347,7 @@ const HowMuch = ({
                             <Check
                                 key={purpose}
                                 purpose={purpose}
-                                fundingPurpose={assetType}
+                                reason={assetType}
                                 handlePurposeChange={handleAssetTypeChange}
                             />
                         ))}

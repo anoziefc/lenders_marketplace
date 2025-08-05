@@ -3,9 +3,11 @@ import axiosInstance from "@/lib/axiosInstance";
 
 export const fundingOnSubmit = async (fundingFormData: FundingFormData) => {
     try {
+        // console.log(fundingFormData);
         const response = await axiosInstance.post("/get-lenders", fundingFormData);
+        console.log(response);
         if (response) {
-            return response.data;
+            return response.data as fundFormResponse;
         } else {
             return null;
         }
@@ -33,11 +35,11 @@ export const contactOnSubmit = async (contactIfo: ContactFormData) => {
 
 export const getResults = async (token: string) => {
     try {
-        let response = await axiosInstance.get("/get-lenders", {
-            params: {id: token}
+        let response = await axiosInstance.get("/results", {
+            params: {token}
         });
         if (response) {
-            return response.data;
+            return response.data as LendersResultsResponse;
         } else {
             return null;
         }

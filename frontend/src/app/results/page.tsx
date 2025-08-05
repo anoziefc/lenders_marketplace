@@ -1,18 +1,27 @@
-"use client"
+"use client";
 import ContactSection from "@/components/ContactSection";
-import Form from "@/components/Form";
-import NoResultsSection from "@/components/NoResultsSection";
 import Rating from "@/components/Ratings";
 import TopBar from "@/components/TopBar";
-import Image from "next/image";
 import Link from "next/link";
-import { useSearchParams } from 'next/navigation'
+import {useSearchParams} from "next/navigation";
+import {getResults} from "@/lib/onSubmits";
+import {useEffect, useState} from "react";
+import ResultsInfoCard from "@/components/ResultsInfoCard";
 
 const Page = () => {
   const searchParams = useSearchParams()
 
-  const search = searchParams.get('id')
+  const token = searchParams.get("d");
+  const [result, setResult] = useState<LendersResultsResponse | null>(null);
 
+
+  useEffect(() => {
+    const fetchResult = async () => {
+      const result = await getResults(token || "");
+      if (result) setResult(result);
+    };
+    fetchResult();
+  }, [token]);
 
   return (
     <div
@@ -23,9 +32,9 @@ const Page = () => {
       </div>
       <div className="flex gap-5 flex-col items-center content-center w-full justify-center">
       <div className="p-4 w-full">
-        <NoResultsSection />
+        <ResultsInfoCard result={result}/>
         </div>
-        <ContactSection />
+        <ContactSection token={token} />
       </div>
       <div className="">
         <p>

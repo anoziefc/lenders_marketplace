@@ -6,19 +6,20 @@ declare interface FeatureCardProps {
 }
 
 declare interface FundingFormData {
-    fundingAmount: number;
-    fundingPurpose: string;
-    important: string;
-    annualTurnover: number;
-    over3Years: boolean;
-    homeOwnerInUk: boolean;
+    amount: string;
+    reason: string;
+    importance: string;
+    turn_over: string;
+    years_of_trading: string;
+    home_owner: string;
 }
 
 declare interface ContactFormData {
-    firstName: string;
-    lastName: string;
-    phoneNumber: string;
+    first_name: string;
+    last_name: string;
+    phone_number: string;
     email: string;
+    token: string;
 }
 
 // Define the props for the TestimonialCard component
@@ -51,7 +52,7 @@ declare interface NextButtonProps {
 
 declare interface CheckProps {
     purpose: string;
-    fundingPurpose: string;
+    reason: string;
     handlePurposeChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -184,4 +185,33 @@ declare interface ContactInfo {
     last_name: string;
     email: string;
     phone_number: string;
+}
+
+declare interface fundFormResponse {
+    message: string,
+    token: string
+}
+
+declare interface getLendersResponse {
+    message: string,
+    content: []
+}
+
+
+declare interface LendersResultsResponse {
+    message: string;
+    content: {
+        lenders_list: Array<{
+            id: string;
+            lender_name: string;
+            min_lending: number;
+            max_lending: number;
+            lower_lending_rate: number;
+            higher_lending_rate: number;
+            per_month_or_factor_rate: string;
+            min_term_months: number;
+            max_term_months: number;
+            payout_time: string;
+        }>;
+    };
 }

@@ -1,21 +1,21 @@
 import React from "react";
 
-const Check = ({ purpose, fundingPurpose, handlePurposeChange }: CheckProps) => {
+const Check = ({ purpose, reason, handlePurposeChange }: CheckProps) => {
   return (
     <label
       key={purpose}
       className={`flex items-center p-4 rounded-xl cursor-pointer transition duration-200 ease-in-out
                             ${
-                              fundingPurpose === purpose
+                              reason === purpose
                                 ? "border-2 border-blue-500 bg-blue-50"
                                 : ""
                             }`}
     >
       <input
         type="radio"
-        name="fundingPurpose"
+        name="reason"
         value={purpose}
-        checked={fundingPurpose === purpose}
+        checked={reason === purpose}
         onChange={handlePurposeChange}
         className="hidden" // Hide the default radio button
       />
@@ -23,12 +23,12 @@ const Check = ({ purpose, fundingPurpose, handlePurposeChange }: CheckProps) => 
       <div
         className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-3
                               ${
-                                fundingPurpose === purpose
+                                reason === purpose
                                   ? "border-blue-500 bg-blue-500"
                                   : "border-gray-400 bg-white"
                               }`}
       >
-        {fundingPurpose === purpose && (
+        {reason === purpose && (
           <svg
             className="w-3 h-3 text-white"
             fill="currentColor"
