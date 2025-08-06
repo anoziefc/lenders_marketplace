@@ -13,6 +13,8 @@ Base = declarative_base()
 class ContactForm(BaseModel):
     first_name: str = Field(..., alias="First Name")
     last_name: str = Field(..., alias="Last Name")
+    business_name: str = Field(..., alias="Business Name")
+    business_type: str = Field(..., alias="Business Type")
     email: EmailStr = Field(..., alias="Email Address")
     phone_number: str = Field(..., alias="Phone Number")
     token: str = Field(..., alias="Token")
@@ -68,6 +70,7 @@ class LoanProduct(Base):
 class LoanRequest(BaseModel):
     amount: str = Field(..., alias="Amount to borrow")
     reason: str = Field(..., alias="Reason for wanting loan")
+    type_of_device: str = Field(None, alias="Type of Device")
     importance: str = Field(..., alias="What is important to borrower")
     turn_over: str = Field(..., alias="Borrower's turnover")
     years_of_trading: str = Field(..., alias="Borrower's years of trading")

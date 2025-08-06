@@ -4,3 +4,4 @@ __pycache__
 fetch.py
 loan_matching.py
 .vscode
+dump.sql
