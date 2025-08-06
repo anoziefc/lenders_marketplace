@@ -19,7 +19,7 @@ export const fundingOnSubmit = async (fundingFormData: FundingFormData) => {
 
 export const contactOnSubmit = async (contactIfo: ContactFormData) => {
     try {
-        let response = await axiosInstance.post("/submit-contact", contactIfo);
+        const response = await axiosInstance.post("/submit-contact", contactIfo);
         // todo: get token from response
         // if (response) window.location.reload();
         if (response) {
@@ -35,7 +35,7 @@ export const contactOnSubmit = async (contactIfo: ContactFormData) => {
 
 export const getResults = async (token: string) => {
     try {
-        let response = await axiosInstance.get("/results", {
+        const response = await axiosInstance.get("/results", {
             params: {token}
         });
         if (response) {

@@ -27,7 +27,7 @@ const page = () => {
                             {" "}
                             {/* Added max-w-md to constrain form width */}
                             <div className="w-full bg-white rounded-xl shadow-lg p-6 sm:p-8 md:p-10">
-                                <ContactForm/>
+                                <ContactForm token={""}/>
                             </div>
                         </div>
                     </div>

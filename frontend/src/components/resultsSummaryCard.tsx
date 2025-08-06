@@ -1,16 +1,10 @@
 import React from "react";
+import Image from "next/image";
 
 // Define the props for the FunderSummary component to make it reusable.
-interface FunderSummaryProps {
-    fundersCount: number;
-    rateDescription: string;
-    baseRate: string;
-    nextMeetingMessage: string;
-    bankIconUrl: string;
-}
+
 
 const ResultsSummaryCard: React.FC<FunderSummaryProps> = ({
-                                                              fundersCount,
                                                               rateDescription,
                                                               baseRate,
                                                               nextMeetingMessage,
@@ -22,7 +16,7 @@ const ResultsSummaryCard: React.FC<FunderSummaryProps> = ({
                 {/* Main Title Section */}
                 <div className="mb-8 md:mb-12">
                     <h1 className="text-3xl md:text-5xl font-bold leading-tight">
-                        Great news! We've found potential funders.
+                        Great news! We&quot;ve found potential funders.
                     </h1>
                     <p className="mt-4 text-sm md:text-base text-gray-200">
                         See your matched funders below, their rates, product, and what they offer to you. Click more
@@ -36,7 +30,9 @@ const ResultsSummaryCard: React.FC<FunderSummaryProps> = ({
                     <div className="flex justify-between items-center pb-4 border-b border-gray-600">
                         {/* Bank Icon and Description */}
                         <div className="flex items-center space-x-4">
-                            <img
+                            <Image
+                                height={40}
+                                width={40}
                                 src={bankIconUrl}
                                 alt="Bank of England logo"
                                 className="w-10 h-10 object-contain rounded-full"

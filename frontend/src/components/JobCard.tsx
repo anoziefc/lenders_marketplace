@@ -1,4 +1,3 @@
-import type { JobListing } from "./JobOpeningsSection";
 
 const JobCard: React.FC<JobCardProps> = ({ job }) => {
   return (

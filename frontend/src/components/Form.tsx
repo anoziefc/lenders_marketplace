@@ -4,6 +4,7 @@ import Button from "./Button";
 import Check from "./Check";
 import {fundingOnSubmit} from "@/lib/onSubmits";
 import {useRouter} from "next/navigation";
+import {toast} from "react-toastify";
 
 const formData: FundingFormData = {
     amount: "",
@@ -14,81 +15,11 @@ const formData: FundingFormData = {
     home_owner: ""
 };
 
-const MostImportant = ({
-                           currentForm,
-                           setCurrentForm,
-                           formValue,
-                           setFormValue,
-                       }: FormProps) => {
-    const [fieldsFilled, setFieldsFilled] = useState(false);
-    const [importance, setImportant] = useState<string>(formValue.importance);
-
-    const handleSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setImportant(e.target.value);
-    };
-    const options = [
-        "Speed",
-        "Price",
-        "Personal Service",
-        "Impaired credit history",
-    ];
-    useEffect(() => {
-        if (importance) {
-            setFormValue((prevFormValue: FundingFormData) => ({
-                ...prevFormValue,
-                importance: importance
-            }));
-            setFieldsFilled(true);
-        } else {
-            setFieldsFilled(false);
-        }
-    }, [importance, setFormValue]);
-    const handleNext = () => {
-        setCurrentForm(currentForm + 1);
-    };
-    const handleBack = () => {
-        setCurrentForm(currentForm - 1);
-    };
-
-    return (
-        <div className="">
-            <div className="mb-8">
-                <label className="block text-xl font-semibold text-gray-800 mb-2">
-                    What&apos;s most importance to you?
-                </label>
-                <p className="text-sm text-gray-500 mb-4">
-                    There are loads of options. We can help you find the right one.
-                </p>
-
-                <div className="space-y-4">
-                    {options.map((purpose) => (
-                        <Check
-                            key={purpose}
-                            purpose={purpose}
-                            reason={importance}
-                            handlePurposeChange={handleSelect}
-                        />
-                    ))}
-                </div>
-            </div>
-
-            <div className="flex justify-center mt-8 gap-4">
-                <Button value="Back" cls={"bg-transparent"} onClick={handleBack} next/>
-                <Button
-                    disabled={!fieldsFilled}
-                    value="Next"
-                    onClick={handleNext}
-                    next
-                />
-            </div>
-        </div>
-    );
-};
 const AboutYou = ({
                       currentForm,
                       setCurrentForm,
                       formValue,
-                      setFormValue,
+                      setFormValue
                   }: FormProps) => {
     const router = useRouter();
     const [turn_over, setAnnualTurnover] = useState<string>(
@@ -118,7 +49,7 @@ const AboutYou = ({
             setAnnualTurnover("£" + e.target.value);
         }
     };
-    const threeYears = ["Yes", "No"];
+
     const inUk = ["Yes", "No"];
 
     useEffect(() => {
@@ -137,14 +68,37 @@ const AboutYou = ({
 
     const handleNext = async () => {
         try {
-            const {token} = await fundingOnSubmit(formValue);
+            if (!fieldsFilled) {
+                toast.info("Please fill in all fields", {
+                    position: "top-right",
+                    toastId: "fundingForm",
+                    pauseOnFocusLoss: false
+                });
+                return;
+            }
+            const token = (await fundingOnSubmit(formValue))?.token;
             if (token) {
-                // router.push({pathname: `/result`, query: {token: token}});
+                toast.success("Form submitted successfully", {
+                    position: "top-right",
+                    toastId: "fundingFormSuccess",
+                    hideProgressBar: true,
+                    closeOnClick: true
+                });
                 router.push(`/results?d=${token}`);
             } else {
+                toast.error("Form submission failed", {
+                    position: "top-right",
+                    toastId: "fundingFormError",
+                    hideProgressBar: true
+                });
                 console.log("no token");
             }
         } catch (err) {
+            toast.error("Form submission failed", {
+                position: "top-right",
+                toastId: "fundingFormError",
+                hideProgressBar: true
+            });
             console.error(err);
         }
     };
@@ -217,7 +171,84 @@ const AboutYou = ({
             <div className="flex justify-center mt-8 gap-4">
                 <Button value="Back" cls={"bg-transparent"} onClick={handleBack} next/>
                 <Button
-                    disabled={!fieldsFilled}
+                    value="Next"
+                    onClick={handleNext}
+                    next
+                />
+            </div>
+        </div>
+    );
+};
+
+const MostImportant = ({
+                           currentForm,
+                           setCurrentForm,
+                           formValue,
+                           setFormValue
+                       }: FormProps) => {
+    const [fieldsFilled, setFieldsFilled] = useState(false);
+    const [importance, setImportant] = useState<string>(formValue.importance);
+
+    const handleSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setImportant(e.target.value);
+    };
+    const options = [
+        "Speed",
+        "Price",
+        "Personal Service",
+        "Impaired credit history"
+    ];
+    useEffect(() => {
+        if (importance) {
+            setFormValue((prevFormValue: FundingFormData) => ({
+                ...prevFormValue,
+                importance: importance
+            }));
+            setFieldsFilled(true);
+        } else {
+            setFieldsFilled(false);
+        }
+    }, [importance, setFormValue]);
+    const handleNext = () => {
+        if (!fieldsFilled) {
+            toast.info("Select an option", {
+                position: "top-right",
+                toastId: "fundingForm",
+                pauseOnFocusLoss: false
+            });
+            return;
+        }
+        setCurrentForm(currentForm + 1);
+    };
+    const handleBack = () => {
+        setCurrentForm(currentForm - 1);
+    };
+
+    return (
+        <div className="">
+            <div className="mb-8">
+                <label className="block text-xl font-semibold text-gray-800 mb-2">
+                    What&apos;s most importance to you?
+                </label>
+                <p className="text-sm text-gray-500 mb-4">
+                    There are loads of options. We can help you find the right one.
+                </p>
+
+                <div className="space-y-4">
+                    {options.map((purpose) => (
+                        <Check
+                            key={purpose}
+                            purpose={purpose}
+                            reason={importance}
+                            handlePurposeChange={handleSelect}
+                        />
+                    ))}
+                </div>
+            </div>
+
+            <div className="flex justify-center mt-8 gap-4">
+                <Button value="Back" cls={"bg-transparent"} onClick={handleBack} next/>
+                <Button
                     value="Next"
                     onClick={handleNext}
                     next
@@ -231,7 +262,7 @@ const HowMuch = ({
                      currentForm,
                      setCurrentForm,
                      formValue,
-                     setFormValue,
+                     setFormValue
                  }: FormProps) => {
     const [amount, setFundingAmount] = useState<string>(
         formValue.amount.toString()
@@ -276,7 +307,7 @@ const HowMuch = ({
         "Cashflow",
         "Refinancing",
         "Asset Finance",
-        "Other (eg. Acquisition, MBO)",
+        "Other (eg. Acquisition, MBO)"
     ];
 
     const assetTypes = [
@@ -284,10 +315,18 @@ const HowMuch = ({
         "Plant & Machinery",
         "Equipment",
         "Refurbishments",
-        "Other",
+        "Other"
     ];
 
     const handleNext = () => {
+        if (!fieldsFilled) {
+            toast.info("Please fill in all fields", {
+                position: "top-right",
+                toastId: "fundingForm",
+                pauseOnFocusLoss: false
+            });
+            return;
+        }
         setCurrentForm(currentForm + 1);
     };
 
@@ -357,7 +396,6 @@ const HowMuch = ({
 
             <div className="flex justify-center mt-8">
                 <Button
-                    disabled={!fieldsFilled}
                     value="Next"
                     onClick={handleNext}
                     next

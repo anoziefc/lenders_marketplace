@@ -1,7 +1,7 @@
 "use client";
 import React, {useState} from "react";
 import {contactOnSubmit} from "@/lib/onSubmits";
-
+import {toast} from "react-toastify";
 // Reusable ContactForm Component
 const ContactForm: React.FC<{ token: string | null }> = ({token}) => {
     const initialFormData: ContactFormData = {
@@ -9,9 +9,10 @@ const ContactForm: React.FC<{ token: string | null }> = ({token}) => {
         last_name: "",
         phone_number: "",
         email: "",
-        token
+        token: token || ""
     };
     const [formData, setFormData] = useState(initialFormData);
+    const [loading, setLoading] = useState(false);
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
         const {id, value} = e.target;
@@ -24,15 +25,42 @@ const ContactForm: React.FC<{ token: string | null }> = ({token}) => {
 
     const handleOnSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setLoading(true);
         try {
-            if (!formData.first_name || !formData.last_name || !formData.phone_number || !formData.email || !token) {
-                alert("Please fill in all fields.");
+            if (!formData.first_name || !formData.last_name || !formData.phone_number || !formData.email) {
+                // alert("Please fill in all fields.");
+                toast.info("Please fill in all fields", {
+                    position: "top-right",
+                    toastId: "contactForm",
+                    pauseOnFocusLoss: false
+                });
                 return;
+
             }
-            const response = await contactOnSubmit(formData, token);
-            if (response) setFormData(initialFormData);
+            const response = await contactOnSubmit(formData);
+            if (response) {
+                toast.success("Form submitted successfully", {
+                    position: "top-right",
+                    toastId: "contactForm",
+                    pauseOnFocusLoss: false
+                });
+                setFormData(initialFormData);
+            } else {
+                toast.error("Form submission failed", {
+                    position: "top-right",
+                    toastId: "contactForm",
+                    pauseOnFocusLoss: false
+                });
+            }
         } catch (err) {
+            toast.error("Form submission failed", {
+                position: "top-right",
+                toastId: "contactForm",
+                pauseOnFocusLoss: false
+            });
             console.error(err);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -45,7 +73,9 @@ const ContactForm: React.FC<{ token: string | null }> = ({token}) => {
                     </label>
                     <input
                         onChange={handleOnChange}
+                        value={formData.first_name}
                         required
+                        disabled={loading}
                         type="text"
                         id="first_name"
                         name="first_name"
@@ -60,6 +90,8 @@ const ContactForm: React.FC<{ token: string | null }> = ({token}) => {
                     <input
                         onChange={handleOnChange}
                         required
+                        disabled={loading}
+                        value={formData.last_name}
                         type="text"
                         id="last_name"
                         name="last_name"
@@ -75,6 +107,8 @@ const ContactForm: React.FC<{ token: string | null }> = ({token}) => {
                 <input
                     onChange={handleOnChange}
                     required
+                    disabled={loading}
+                    value={formData.phone_number}
                     type="tel"
                     id="phone_number"
                     name="phoneNUmber"
@@ -89,6 +123,8 @@ const ContactForm: React.FC<{ token: string | null }> = ({token}) => {
                 <input
                     onChange={handleOnChange}
                     required
+                    disabled={loading}
+                    value={formData.email}
                     type="mail"
                     id="email"
                     name="email"
@@ -98,6 +134,7 @@ const ContactForm: React.FC<{ token: string | null }> = ({token}) => {
             </div>
 
             <button
+                disabled={loading}
                 onClick={handleOnSubmit}
                 className="w-full bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center"
             >
