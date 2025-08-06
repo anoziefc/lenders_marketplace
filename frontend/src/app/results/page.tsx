@@ -3,24 +3,33 @@ import ContactSection from "@/components/ContactSection";
 import Rating from "@/components/Ratings";
 import TopBar from "@/components/TopBar";
 import Link from "next/link";
-import {useSearchParams} from "next/navigation";
+import {useRouter, useSearchParams} from "next/navigation";
 import {getResults} from "@/lib/onSubmits";
 import {Suspense, useEffect, useState} from "react";
 import ResultsInfoCard from "@/components/ResultsInfoCard";
+import {toast} from "react-toastify";
 
 const GetToken = () => {
+    const router = useRouter();
     const searchParams = useSearchParams();
     const token = searchParams.get("d");
     const [result, setResult] = useState<LendersResultsResponse | null>(null);
-
 
     useEffect(() => {
         const fetchResult = async () => {
             const result = await getResults(token || "");
             if (result) setResult(result);
         };
-        fetchResult();
+        if (token) fetchResult();
     }, [token]);
+    if (!token) {
+        toast.info("Fill and submit the form to get started", {toastId: "redirect-info"});
+        router.push("/journey");
+        return null;
+    }
+
+    toast.info("Fill in the form to receive the result", {toastId: "contact-form"});
+
     return <div className="flex gap-5 flex-col items-center content-center w-full justify-center">
         <div className="p-4 w-full">
             <ResultsInfoCard result={result}/>

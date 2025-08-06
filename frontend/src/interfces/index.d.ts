@@ -18,6 +18,8 @@ declare interface ContactFormData {
     first_name: string;
     last_name: string;
     phone_number: string;
+    business_name: string;
+    business_type: string;
     email: string;
     token: string;
 }

@@ -8,6 +8,8 @@ const ContactForm: React.FC<{ token: string | null }> = ({token}) => {
         first_name: "",
         last_name: "",
         phone_number: "",
+        business_type: "",
+        business_name: "",
         email: "",
         token: token || ""
     };
@@ -129,6 +131,38 @@ const ContactForm: React.FC<{ token: string | null }> = ({token}) => {
                     id="email"
                     name="email"
                     placeholder="Email"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
+                />
+            </div>
+            <div>
+                <label htmlFor="business_name" className="sr-only">
+                    Business Name
+                </label>
+                <input
+                    onChange={handleOnChange}
+                    required
+                    disabled={loading}
+                    value={formData.business_name}
+                    type="text"
+                    id="business_name"
+                    name="business_name"
+                    placeholder="Business Name"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
+                />
+            </div>
+            <div>
+                <label htmlFor="business_type" className="sr-only">
+                    Business Type
+                </label>
+                <input
+                    onChange={handleOnChange}
+                    required
+                    disabled={loading}
+                    value={formData.business_type}
+                    type="text"
+                    id="business_type"
+                    name="business_type"
+                    placeholder="Business Type"
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
                 />
             </div>

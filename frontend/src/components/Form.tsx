@@ -31,6 +31,7 @@ const AboutYou = ({
     const [homeOwner, setHomeOwner] = useState<string>(
         formValue.home_owner
     );
+    const [loading, setLoading] = useState(false);
     const [fieldsFilled, setFieldsFilled] = useState(false);
 
     const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,6 +69,7 @@ const AboutYou = ({
 
     const handleNext = async () => {
         try {
+            setLoading(true);
             if (!fieldsFilled) {
                 toast.info("Please fill in all fields", {
                     position: "top-right",
@@ -100,6 +102,8 @@ const AboutYou = ({
                 hideProgressBar: true
             });
             console.error(err);
+        } finally {
+            setLoading(false);
         }
     };
     const handleBack = () => {
@@ -121,6 +125,7 @@ const AboutYou = ({
                     What&apos;s your annual turnover
                 </p>
                 <input
+                    disabled={loading}
                     type="number"
                     id="turn_over"
                     value={turn_over || ""}
@@ -140,6 +145,7 @@ const AboutYou = ({
 
                 <div className="space-y-4">
                     <input
+                        disabled={loading}
                         type="number"
                         id="years_of_trading"
                         value={trading3Years || ""}
@@ -147,7 +153,6 @@ const AboutYou = ({
                         className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-lg text-gray-800
                        focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500
                        transition duration-200 ease-in-out"
-                        placeholder="£100,000"
                     />
                 </div>
             </div>
@@ -162,7 +167,8 @@ const AboutYou = ({
                             key={purpose}
                             purpose={purpose}
                             reason={homeOwner}
-                            handlePurposeChange={handleSetHomeOwner}
+                            handlePurposeChange={loading ? () => {
+                            } : handleSetHomeOwner}
                         />
                     ))}
                 </div>
