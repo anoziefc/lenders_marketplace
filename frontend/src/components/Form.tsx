@@ -5,6 +5,7 @@ import Check from "./Check";
 import {fundingOnSubmit} from "@/lib/onSubmits";
 import {useRouter} from "next/navigation";
 import {toast} from "react-toastify";
+import currencyFormat from "../../currencyFormart";
 
 const formData: FundingFormData = {
     amount: "",
@@ -126,9 +127,9 @@ const AboutYou = ({
                 </p>
                 <input
                     disabled={loading}
-                    type="number"
+                    type="text"
                     id="turn_over"
-                    value={turn_over || ""}
+                    value={currencyFormat(turn_over) || ""}
                     onChange={handleAmountChange}
                     onFocus={currencyAppend}
                     className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-lg text-gray-800
@@ -271,7 +272,7 @@ const HowMuch = ({
                      setFormValue
                  }: FormProps) => {
     const [amount, setFundingAmount] = useState<string>(
-        formValue.amount.toString()
+        formValue.amount
     );
     const [fieldsFilled, setFieldsFilled] = useState(false);
 
@@ -351,7 +352,7 @@ const HowMuch = ({
                 <input
                     type="text"
                     id="amount"
-                    value={amount || ""}
+                    value={currencyFormat(amount)}
                     onChange={handleAmountChange}
                     onFocus={currencyAppend}
                     className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-lg text-gray-800
@@ -417,8 +418,6 @@ const Form = () => {
 
     return (
         <div className="bg-white rounded-3xl shadow-xl p-6 border-1 max-w-xl w-full relative overflow-hidden">
-            <div className="absolute -left-10 -top-10 w-32 h-32 bg-purple-100 rounded-full opacity-50 blur-xl"></div>
-            <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-pink-100 rounded-full opacity-50 blur-xl"></div>
             {currentForm === 0 && (
                 <HowMuch
                     currentForm={currentForm}

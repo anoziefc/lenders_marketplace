@@ -1,6 +1,5 @@
 import Form from "@/components/Form";
 import Rating from "@/components/Ratings";
-import TopBar from "@/components/TopBar";
 import Link from "next/link";
 
 const Page = () => {
@@ -10,7 +9,6 @@ const Page = () => {
         "p-4 flex flex-col gap-4 items-center justify-center min-h-screen"
       }
     >
-      <TopBar />
       <div className="flex items-center content-center w-full justify-center">
         <Form />
       </div>

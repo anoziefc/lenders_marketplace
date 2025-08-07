@@ -4,7 +4,10 @@ import {contactOnSubmit} from "@/lib/onSubmits";
 import {toast} from "react-toastify";
 import {useRouter} from "next/navigation";
 
-const ContactForm: React.FC<{ token: string | null }> = ({token}) => {
+const GetMailForm: React.FC<{
+    token: string | null,
+    setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+}> = ({token, setIsOpen}) => {
     const initialFormData: ContactFormData = {
         first_name: "",
         last_name: "",
@@ -42,22 +45,24 @@ const ContactForm: React.FC<{ token: string | null }> = ({token}) => {
 
             }
             const response = await contactOnSubmit(formData);
-            if (response) {
+            if (response.success) {
                 toast.success("Mail has been sent!", {
                     position: "top-right",
                     toastId: "contactForm",
                     pauseOnFocusLoss: false
                 });
                 setFormData(initialFormData);
+                setIsOpen(false);
                 setTimeout(() => router.push("https://www.contigocf.com/"), 2000);
             } else {
-                toast.error("Form submission failed", {
+                toast.error(response.response.data.detail || "Form submission failed", {
                     position: "top-right",
                     toastId: "contactForm",
                     pauseOnFocusLoss: false
                 });
             }
         } catch (err) {
+            console.log(err);
             toast.error("Form submission failed", {
                 position: "top-right",
                 toastId: "contactForm",
@@ -70,7 +75,7 @@ const ContactForm: React.FC<{ token: string | null }> = ({token}) => {
     };
 
     return (
-        <form className="space-y-6 bg-white p-6 rounded-xl shadow-sm">
+        <form className="space-y-6 bg-white p-6 rounded-3xl">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                     <label htmlFor="first_name" className="sr-only">
@@ -173,9 +178,13 @@ const ContactForm: React.FC<{ token: string | null }> = ({token}) => {
             <button
                 disabled={loading}
                 onClick={handleOnSubmit}
-                className="w-full bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center"
+                className="w-full
+            bg-[#FFA9C1] border
+             font-semibold
+            py-3 px-6 sm:py-3.5 sm:px-7
+            rounded-full shadow-md  duration-300 flex items-center justify-center mt-12"
             >
-                Send Message
+                Email Report
                 <svg
                     className="w-5 h-5 ml-2"
                     fill="none"
@@ -195,4 +204,4 @@ const ContactForm: React.FC<{ token: string | null }> = ({token}) => {
     );
 };
 
-export default ContactForm;
+export default GetMailForm;

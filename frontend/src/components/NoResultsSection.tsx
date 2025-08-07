@@ -8,7 +8,7 @@ const NoResultsSection: React.FC = () => {
       className="
           relative
           flex flex-col justify-center items-start
-          p-6 sm:p-8 md:p-10 lg:p-12
+          py-9 p-6 sm:p-8 md:p-10 lg:p-12
           bg-[#2F7061] text-white
           lg:w-3/5 xl:w-2/3
           z-10
@@ -51,6 +51,7 @@ const NoResultsSection: React.FC = () => {
             py-3 px-6 sm:py-3.5 sm:px-7
             rounded-full shadow-md transition-colors duration-300
             space-x-2 cusor-pointer
+            cursor-pointer
           "
       >
         <span className="mr-2">Adjust Your Search</span>

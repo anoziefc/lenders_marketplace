@@ -3,7 +3,7 @@ import React from "react";
 // The Rating component, which will render our StarRating component.
 const Rating: React.FC = () => {
   return (
-      <div className="flex space-x-1">
+      <div className="flex space-x-1 my-4">
         {Array.from({ length: 5 }).map((_, index) => (
           <div
             key={index}

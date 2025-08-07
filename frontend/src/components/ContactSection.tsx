@@ -3,20 +3,12 @@ import React, {useState} from "react";
 import ContactForm from "@/components/ContactForm";
 import Modal from "react-modal";
 
-const customStyles = {
-    content: {
-        zIndex: 1000,
-    }
-};
 
-const ContactSection: React.FC<{ token: string | null }> = ({token}) => {
-    const [modalIsOpen, setIsOpen] = useState(false);
-    const triggerModal = () => {
-        setTimeout(() => {
-            setIsOpen(true);
-        }, 5000);
-    };
-    triggerModal();
+const ContactSection: React.FC<{
+    token: string | null
+}> = ({token}) => {
+
+    // triggerModal();
 
     return (
         <section
@@ -75,15 +67,9 @@ const ContactSection: React.FC<{ token: string | null }> = ({token}) => {
                 </div>
 
                 {/* Right side: Contact Form */}
-                <div className="lg:w-1/2 p-8 rounded-xl w-full max-w-xl">
-                    <Modal
-                        isOpen={modalIsOpen}
-                        // onAfterOpen={afterOpenModal}
-                        onRequestClose={() => setIsOpen(false)}
-                        style={customStyles}
-                        contentLabel="Example Modal"
-                    ><ContactForm token={token}/></Modal>
-                </div>
+                {/*<div className="lg:w-1/2 p-8 rounded-xl w-full max-w-xl">*/}
+                {/*    <ContactForm token={token}/>*/}
+                {/*</div>*/}
             </div>
         </section>
     );

@@ -6,10 +6,10 @@ import NoResultsSection from "@/components/NoResultsSection";
 const ResultsInfoCard: React.FC<{ result: LendersResultsResponse | null }> = ({result}) => {
 
     return (
-        <div className="flex items-center justify-center font-inter">
+        <div className="flex -z-10 items-center justify-center font-inter">
             {/* Main container for the card */}
             <div
-                className="relative -z-10 flex flex-col lg:flex-row
+                className="relative flex flex-col lg:flex-row
         w-full max-w-6xl
         bg-white rounded-3xl shadow-xl overflow-hidden
         min-h-[400px] sm:min-h-[450px] md:min-h-[500px] lg:min-h-[400px]
@@ -30,18 +30,10 @@ const ResultsInfoCard: React.FC<{ result: LendersResultsResponse | null }> = ({r
                 /> : <NoResultsSection/>}
                 {/* Right section: Image and background patterns */}
                 <div
-                    className="relative
-          flex-1
-          bg-[#FCE3B0]
-          lg:w-2/5 xl:w-1/3
-          rounded-b-3xl lg:rounded-bl-none lg:rounded-r-3xl
-          overflow-hidden
-          min-h-[200px] lg:min-h-auto
-        "
-                >
+                    className="relative flex-1 bg-[#FCE3B0] lg:w-2/5 xl:w-1/3 rounded-b-3xl lg:rounded-bl-none lg:rounded-r-3xl overflow-hidden min-h-[200px] lg:min-h-auto">
                     {/* Image of the man */}
-                    <div className="h-full w-full">
-                        <Image src={"/not-found.jpg"} fill alt=""/>
+                    <div className="h-full aspect-square w-full overflow-hidden bg-top">
+                        <Image src={"/person-result.avif"} fill alt="" className={`top-0`}/>
                     </div>
 
                     {/* Abstract patterns on the right side */}

@@ -17,7 +17,7 @@ const Button: React.FC<NextButtonProps> = ({
                  focus:outline-none focus:ring-2  focus:ring-opacity-50
                  transition duration-300 ease-in-out ${
                    cls ||
-                   "bg-pink-200 text-gray-600 border-gray-400 hover:bg-pink-300 focus:ring-pink-500"
+                   "bg-[#FFA9C1] text-gray-600 border-gray-400 focus:ring-pink-500"
                  } `}
       onClick={onClick}
     >

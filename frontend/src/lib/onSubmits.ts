@@ -25,11 +25,11 @@ export const contactOnSubmit = async (contactIfo: ContactFormData) => {
         if (response) {
             return response.data;
         } else {
-            return null;
+            return {message: "Form submission failed"};
         }
     } catch (err) {
         console.log(err);
-        return null;
+        return err;
     }
 };
 

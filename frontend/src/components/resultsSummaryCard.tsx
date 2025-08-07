@@ -21,7 +21,7 @@ const ResultsSummaryCard: React.FC<FunderSummaryProps> = ({
                     {/* Main Title Section */}
                     <div className="mb-8 md:mb-12">
                         <h1 className="text-3xl md:text-5xl font-bold leading-tight">
-                            Great news! We&quot;ve found potential funders.
+                            Great news! We&apos;ve found potential funders.
                         </h1>
                         <p className="mt-4 text-sm md:text-base text-gray-200">
                             See your matched funders below, their rates, product, and what they offer to you. Click more
