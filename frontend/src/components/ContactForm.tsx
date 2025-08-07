@@ -43,13 +43,13 @@ const ContactForm: React.FC<{ token: string | null }> = ({token}) => {
             }
             const response = await contactOnSubmit(formData);
             if (response) {
-                toast.success("Form submitted successfully", {
+                toast.success("Mail has been sent!", {
                     position: "top-right",
                     toastId: "contactForm",
                     pauseOnFocusLoss: false
                 });
                 setFormData(initialFormData);
-                setTimeout(() => router.push("/"), 2000);
+                setTimeout(() => router.push("https://www.contigocf.com/"), 2000);
             } else {
                 toast.error("Form submission failed", {
                     position: "top-right",
