@@ -208,27 +208,21 @@ declare interface getLendersResponse {
 }
 
 
+declare interface FunderSummaryProps {
+    "lender_name": string;
+    "min_lending": number;
+    "max_lending": number;
+    "lower_lending_rate": float;
+    "higher_lending_rate": float;
+    "per_month_or_factor_rate": "PM" | "FR";
+    "min_term_months": number;
+    "max_term_months": number;
+    "payout_time": string;
+}
+
 declare interface LendersResultsResponse {
     message: string;
     content: {
-        lenders_list: Array<{
-            id: string;
-            lender_name: string;
-            min_lending: number;
-            max_lending: number;
-            lower_lending_rate: number;
-            higher_lending_rate: number;
-            per_month_or_factor_rate: string;
-            min_term_months: number;
-            max_term_months: number;
-            payout_time: string;
-        }>;
+        lenders_list: Array<FunderSummaryProps>;
     };
-}
-
-declare interface FunderSummaryProps {
-    rateDescription: string;
-    baseRate: string;
-    nextMeetingMessage: string;
-    bankIconUrl: string;
 }

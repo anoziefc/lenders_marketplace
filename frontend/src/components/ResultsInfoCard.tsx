@@ -20,15 +20,19 @@ const ResultsInfoCard: React.FC<{ result: LendersResultsResponse | null }> = ({r
                 {/* Left section: Text content and button */}
 
                 {result && result?.content?.lenders_list[0] ? <ResultsSummaryCard
-                    rateDescription="Bank of England Base Rate:"
-                    baseRate="4.75%"
-                    nextMeetingMessage="Next meeting: August 7, 2025. Rates are unlikely to change before then."
-                    bankIconUrl="https://placehold.co/40x40/555/fff?text=BOE" // Using a placeholder for the icon
+                    lender_name={result.content.lenders_list[0].lender_name}
+                    min_lending={result.content.lenders_list[0].min_lending}
+                    max_lending={result.content.lenders_list[0].max_lending}
+                    lower_lending_rate={result.content.lenders_list[0].lower_lending_rate}
+                    higher_lending_rate={result.content.lenders_list[0].higher_lending_rate}
+                    per_month_or_factor_rate={result.content.lenders_list[0].per_month_or_factor_rate}
+                    min_term_months={result.content.lenders_list[0].min_term_months}
+                    max_term_months={result.content.lenders_list[0].max_term_months}
+                    payout_time={result.content.lenders_list[0].payout_time}
                 /> : <NoResultsSection/>}
                 {/* Right section: Image and background patterns */}
                 <div
-                    className="
-          relative
+                    className="relative
           flex-1
           bg-[#FCE3B0]
           lg:w-2/5 xl:w-1/3
