@@ -1,41 +1,28 @@
-import React from "react";
+"use client";
+import React, {useState} from "react";
 import ContactForm from "@/components/ContactForm";
+import Modal from "react-modal";
+
+const customStyles = {
+    content: {
+        zIndex: 1000,
+    }
+};
 
 const ContactSection: React.FC<{ token: string | null }> = ({token}) => {
+    const [modalIsOpen, setIsOpen] = useState(false);
+    const triggerModal = () => {
+        setTimeout(() => {
+            setIsOpen(true);
+        }, 5000);
+    };
+    triggerModal();
 
     return (
         <section
-            className="bg-[#2D6A66] w-full text-white py-16 px-4 sm:px-6 lg:px-8 font-sans relative overflow-hidden">
-            {/* Abstract background pattern (simplified from image) */}
-            <div className="absolute bottom-0 right-0 text-gray-700 opacity-10">
-                <svg
-                    width="150"
-                    height="150"
-                    viewBox="0 0 100 100"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path
-                        d="M50 0C22.386 0 0 22.386 0 50C0 77.614 22.386 100 50 100C77.614 100 100 77.614 100 50C100 22.386 77.614 0 50 0ZM50 90C27.909 90 10 72.091 10 50C10 27.909 27.909 10 50 10C72.091 10 90 27.909 90 50C90 72.091 72.091 90 50 90Z"
-                        fill="currentColor"
-                    />
-                    <path
-                        d="M50 10C55.5228 10 60 14.4772 60 20C60 25.5228 55.5228 30 50 30C44.4772 30 40 25.5228 40 20C40 14.4772 44.4772 10 50 10Z"
-                        fill="currentColor"
-                    />
-                    <path
-                        d="M50 40C44.4772 40 40 44.4772 40 50C40 55.5228 44.4772 60 50 60C55.5228 60 60 55.5228 60 50C60 44.4772 55.5228 40 50 40Z"
-                        fill="currentColor"
-                    />
-                    <path
-                        d="M50 70C44.4772 70 40 74.4772 40 80C40 85.5228 44.4772 90 50 90C55.5228 90 60 85.5228 60 80C60 74.4772 55.5228 70 50 70Z"
-                        fill="currentColor"
-                    />
-                </svg>
-            </div>
-
+            className="bg-[#2D6A66] w-full text-white py-16 px-4 sm:px-6 lg:px-8 font-sans overflow-hidden">
             <div
-                className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center lg:items-start justify-between gap-12 relative z-10">
+                className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center lg:items-start justify-between gap-12 z-10">
                 {/* Left side: Text and Contact Info */}
                 <div className="lg:w-1/2 text-center lg:text-left mb-8 lg:mb-0">
                     <h2 className="text-3xl sm:text-4xl font-bold mb-4">Get in touch.</h2>
@@ -88,8 +75,14 @@ const ContactSection: React.FC<{ token: string | null }> = ({token}) => {
                 </div>
 
                 {/* Right side: Contact Form */}
-                <div className="lg:w-1/2 bg-white p-8 rounded-xl shadow-lg w-full max-w-xl">
-                    <ContactForm token={token}/>
+                <div className="lg:w-1/2 p-8 rounded-xl w-full max-w-xl">
+                    <Modal
+                        isOpen={modalIsOpen}
+                        // onAfterOpen={afterOpenModal}
+                        onRequestClose={() => setIsOpen(false)}
+                        style={customStyles}
+                        contentLabel="Example Modal"
+                    ><ContactForm token={token}/></Modal>
                 </div>
             </div>
         </section>

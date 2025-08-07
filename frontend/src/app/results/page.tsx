@@ -27,7 +27,6 @@ const GetToken = () => {
         router.push("/journey");
         return null;
     }
-
     toast.info("Fill in the form to receive the result", {toastId: "contact-form"});
 
     return <div className="flex gap-5 flex-col items-center content-center w-full justify-center">

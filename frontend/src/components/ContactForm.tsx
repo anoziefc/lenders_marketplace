@@ -2,6 +2,7 @@
 import React, {useState} from "react";
 import {contactOnSubmit} from "@/lib/onSubmits";
 import {toast} from "react-toastify";
+import {useRouter} from "next/navigation";
 // Reusable ContactForm Component
 const ContactForm: React.FC<{ token: string | null }> = ({token}) => {
     const initialFormData: ContactFormData = {
@@ -15,6 +16,7 @@ const ContactForm: React.FC<{ token: string | null }> = ({token}) => {
     };
     const [formData, setFormData] = useState(initialFormData);
     const [loading, setLoading] = useState(false);
+    const router = useRouter();
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
         const {id, value} = e.target;
@@ -47,6 +49,7 @@ const ContactForm: React.FC<{ token: string | null }> = ({token}) => {
                     pauseOnFocusLoss: false
                 });
                 setFormData(initialFormData);
+                setTimeout(() => router.push("/"), 2000);
             } else {
                 toast.error("Form submission failed", {
                     position: "top-right",
