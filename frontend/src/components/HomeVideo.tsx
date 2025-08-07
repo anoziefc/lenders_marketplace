@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import {Play} from "lucide-react";
+import {Pause, Play} from "lucide-react";
 
 const sponsors = [
     {img: "/s1.jpg"},
@@ -11,6 +11,9 @@ const sponsors = [
 ];
 
 const HomeVideo = () => {
+    const [play, setPlay] = React.useState(false);
+    const onPlay = () => setPlay(!play);
+
     return (
         <section className="py-12 flex flex-col gap-6">
             <h1 className="text-center text-xl font-bold">
@@ -35,13 +38,14 @@ const HomeVideo = () => {
                 <div
                     className="relative bg-[url('/video-thumb.jpg')] bg-cover bg-center w-full max-w-2xl rounded-xl aspect-[2/1] bg-gray-900 bg-opacity-10 flex justify-center items-center">
                     <div
+                        onClick={onPlay}
                         className={`w-fit cursor-pointer py-3 px-6  text-gray-600 text-lg font-semibold rounded-full border-2 shadow-md
                  flex items-center justify-center space-x-2
                  focus:outline-none focus:ring-2  focus:ring-opacity-50
-                 transition duration-300 ease-in-out bg-white  border-white focus:ring-pink-500"
-                 hover:bg-teal-600 `}
+                 transition duration-300 ease-in-out bg-white  border-white focus:ring-pink-500`}
                     >
-                        <Play className="bg-white border-white"/> <span> Watch Video</span>
+                        {play ? <Play className="bg-white border-white"/> : <Pause className="bg-white border-white"/>}
+                        <span> Watch Video</span>
                     </div>
                 </div>
             </div>
