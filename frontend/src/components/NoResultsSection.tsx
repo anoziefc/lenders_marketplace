@@ -8,7 +8,7 @@ const NoResultsSection: React.FC = () => {
       className="
           relative
           flex flex-col justify-center items-start
-          p-6 sm:p-8 md:p-10 lg:p-12
+          py-9 p-6 sm:p-8 md:p-10 lg:p-12
           bg-[#2F7061] text-white
           lg:w-3/5 xl:w-2/3
           z-10
