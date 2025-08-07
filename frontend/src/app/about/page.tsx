@@ -12,7 +12,7 @@ const page = () => {
             <Breadcrumb/>
             <AboutHero
                 title="The story behind"
-                heading="FundOnion"
+                heading="Contigo"
                 paragraphs={[
                     "We're building a new way for SMEs to access funding transparently – direct to the lenders who will cater for their needs.",
                     "Too many small businesses struggle to find the right funding. We believe that by providing SMEs with the knowledge and tools to navigate the financial world, we can make a positive impact on people’s lives, businesses, and dreams."

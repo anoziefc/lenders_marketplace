@@ -61,7 +61,7 @@ const BusinessesFinanceSection: React.FC = () => {
           <div className="flex flex-col space-y-8">
             <TestimonialCard
               imageUrl={uploadedImageUrl}
-              quote="Securing funding for our ecommerce company was proving to be a challenge. Through FundOnion, we were able to get our business in front of multiple lenders, each offering different terms. From there, we got to choose our best match, get funded quickly, and move on to scale our business."
+              quote="Securing funding for our ecommerce company was proving to be a challenge. Through Contigo, we were able to get our business in front of multiple lenders, each offering different terms. From there, we got to choose our best match, get funded quickly, and move on to scale our business."
               author="Tom & Stefan"
               title="Founders, Ecommerce brand"
             />

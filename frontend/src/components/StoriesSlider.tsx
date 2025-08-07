@@ -72,7 +72,7 @@ const ClientSuccessStories: React.FC = () => {
             id: 2,
             logo: "https://placehold.co/150x40/FFFFFF/000000?text=LTSupport", // Placeholder for LTSupport logo
             quote:
-                "I was amazed by how quickly FundOnion made things happen for us. Our funding was secured within a week of chatting to James at the GBEA Awards. This let us step up our game at recruitment fairs almost immediately and grow our program to donate much needed resources to schools. We're really excited to build a long-term partnership with the FundOnion Team.",
+                "I was amazed by how quickly Contigo made things happen for us. Our funding was secured within a week of chatting to James at the GBEA Awards. This let us step up our game at recruitment fairs almost immediately and grow our program to donate much needed resources to schools. We're really excited to build a long-term partnership with the Contigo Team.",
             author: "Laura Tanner",
             title: "Founder, LT Support"
         },

@@ -33,7 +33,7 @@ const page = () => {
   return (
     <div>
       <Breadcrumb />
-      <TitleWrapper title={"FundOnion's Guide to Business Loans"} summary={"Learn the basics of business loans & working capital in easy English right here"}/>
+      <TitleWrapper title={"Contigo's Guide to Business Loans"} summary={"Learn the basics of business loans & working capital in easy English right here"}/>
       <div className="flex w-full justify-center pt-20">
         <div className="flex flex-col md:flex-row max-w-6xl gap-4 px-4 py-12">
           <div className="flex-1 md:max-w-md">
@@ -122,8 +122,8 @@ const page = () => {
             </p>
             <p>
               Check out our
-              <Link href="https://app.fundonion.com/journey/?utm_medium=null&utm_source=null&utm_campaign=null">
-                FundOnion Decision Engine
+              <Link href="#">
+                Contigo Decision Engine
               </Link>
               to instantly see some of the lenders in the market right now,
               offering term loans from just £10,000 up to £500,000.
@@ -366,7 +366,7 @@ const page = () => {
               6{")"} Tiers - an industry secret
             </h2>
             <p>
-              At FundOnion, we often talk about lenders being Tier 1, Tier 2 or
+              At Contigo, we often talk about lenders being Tier 1, Tier 2 or
               Tier 3. This isn’t a measure of how good that lender is or their
               quality of service, it’s a reflection of how much risk they are
               willing to take when lending.
@@ -388,15 +388,15 @@ const page = () => {
             </p>
             <h2 id="other-guides" className="text-xl font-bold">
               7{")"} Found that useful? Take a look around the rest of
-              FundOnion.com for more handy hints, tips, and guides.
+              Contigonf.com for more handy hints, tips, and guides.
             </h2>
-            <Link href="https://www.fundonion.com/guides/guide-to-invoice-finance">
+            <Link href="#">
               Guide to Invoice Finance
             </Link>
-            <Link href="https://www.fundonion.com/guides/guide-to-asset-finance">
+            <Link href="#">
               Guide to Asset Finance
             </Link>
-            <Link href="https://www.fundonion.com/blog">Blog</Link>
+            <Link href="#">Blog</Link>
           </div>
         </div>
       </div>

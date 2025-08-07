@@ -34,10 +34,10 @@ const ContactInfo: React.FC = () => {
             </svg>
           </div>
           <a
-            href="mailto:hello@fundunion.com"
+            href="mailto:hello@contigo.com"
             className="text-lg text-gray-700 hover:text-green-800 transition-colors duration-200"
           >
-            hello@fundunion.com
+            hello@contigo.com
           </a>
         </div>
 

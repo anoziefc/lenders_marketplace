@@ -21,13 +21,13 @@ const Page = () => {
             02081232841
           </Link>{" "}
           or email us at
-          <Link className="blue" href="mailto:hello@fundonion.com">
+          <Link className="blue" href="mailto:hello@contigo.com">
             {" "}
-            hello@fundonion.com
+            hello@contigo.com
           </Link>
         </p>
         <p>
-          Copyright © FundOnion Limited, 2024 | Registered in England & Wales
+          Copyright © Contigo Limited, 2024 | Registered in England & Wales
           (co. number 12743839)
         </p>
       </div>

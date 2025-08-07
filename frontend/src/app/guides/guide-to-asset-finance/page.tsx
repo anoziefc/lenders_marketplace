@@ -26,7 +26,7 @@ const page = () => {
     <div>
       <Breadcrumb />
       <TitleWrapper
-        title={"FundOnion's Guide to Asset Finance"}
+        title={"Cotigo's Guide to Asset Finance"}
         summary={
           "Hard, soft, tangible, intangible, Asset Finance can be a real minefield. Keep your head screwed on with our Asset Finance Guide."
         }
@@ -166,7 +166,7 @@ const page = () => {
             </div>
             <h2>
               7{")"} Found that useful? Take a look around the rest of
-              FundOnion.com for more handy hints, tips, and guides.
+              contigonf.com for more handy hints, tips, and guides.
             </h2>
             <Link href="">Guide to Invoice Finance</Link>
             <Link href="">Guide to Business Loans</Link>

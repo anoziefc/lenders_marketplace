@@ -18,7 +18,7 @@ const TeamSection: React.FC = () => {
     {
       name: "Tim Plummer",
       title: "Chief Technology Officer",
-      description: "Builder & optimiser of FundOnion's tech.",
+      description: "Builder & optimiser of Contigo's tech.",
       imageSrc: "https://placehold.co/100x100/B0B0B0/FFFFFF?text=TP", // Placeholder
     },
     {
@@ -118,7 +118,7 @@ const TeamSection: React.FC = () => {
     <section className="bg-gray-50 py-16 px-4 sm:px-6 lg:px-8 font-sans">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 text-center mb-12">
-          The team behind FundOnion
+          The team behind Contigo
         </h2>
 
         <div className="flex sm:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center gap-6 max-w-3xl mx-auto">

@@ -47,7 +47,7 @@ const ApprovalRibbon: React.FC = () => {
         {/* Text content block */}
         <div className="flex-1 text-center lg:text-left">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-4">
-            FundOnion <span className="text-[#E8C28A]">doubles</span> your
+            Contigo <span className="text-[#E8C28A]">doubles</span> your
             chance of approval.
           </h1>
           <p className="text-sm md:text-base text-gray-300 max-w-xl mx-auto lg:mx-0">

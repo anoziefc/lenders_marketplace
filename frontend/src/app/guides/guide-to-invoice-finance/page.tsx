@@ -34,7 +34,7 @@ const page = () => {
     <div>
       <Breadcrumb />
       <TitleWrapper
-        title={"FundOnion's Guide to Invoice Finance"}
+        title={"Contigo's Guide to Invoice Finance"}
         summary={
           "Want to harness the power of your invoices to really get your cashflow moving? Find out how right here."
         }
@@ -387,7 +387,7 @@ const page = () => {
             </p>
             <h2 id="other-guides" className="text-xl font-bold">
               7{")"} Found that useful? Take a look around the rest of
-              FundOnion.com for more handy hints, tips, and guides.
+              contigonf.com for more handy hints, tips, and guides.
             </h2>
             <Link href="/guides/guide-to-business-loans">
               Guide to Business Loans

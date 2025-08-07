@@ -41,7 +41,7 @@ const AboutHero: React.FC<AboutHeroProps> = ({
         <div className="flex-1 relative flex justify-center items-center overflow-hidden">
           <Image
             src={imageUrl}
-            alt="About FundOnion"
+            alt="About Contigo"
             className="h-full shadow-lg aspect-square"
             fill
           />

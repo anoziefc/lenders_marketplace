@@ -4,24 +4,24 @@ import FaqItem from "./FaqItem";
 
 const faqData = [
   {
-    question: "What is FundOnion?",
+    question: "What is Contigo?",
     answer:
-      "FundOnion.com is the UK's #1 Business Finance matching platform. We connect small businesses with relevant lenders direct. Our unique decision engine allows you to instantly filter lenders your business is eligible for and see their rates and terms for business loans, invoice financing, asset financing, and so much more - saving you 100s of hours and 1,000s of pounds.",
+      "Contigo.com is the UK's #1 Business Finance matching platform. We connect small businesses with relevant lenders direct. Our unique decision engine allows you to instantly filter lenders your business is eligible for and see their rates and terms for business loans, invoice financing, asset financing, and so much more - saving you 100s of hours and 1,000s of pounds.",
   },
   {
-    question: "Why should I use FundOnion instead of my usual broker?",
+    question: "Why should I use Contigo instead of my usual broker?",
     answer:
       "We operate the only self-select matching platform for Business Finance. That means it's totally up to you on who you choose to be your funder: not us, and no-one else. We tell you all the available options for you in 1 easy step. By removing the broker in the middle, you're getting totally transparent results, free from bias.",
   },
   {
     question: "What if I need a hand with my funding application?",
     answer:
-      "That's no problem! Our team at FundOnion all have loads of experience in the business finance industry, either as brokers or working for banks and lenders. We're always happy to help our users find their ideal funder. You can get in touch with us at hello@fundonion.com or call 020 812 32841.",
+      "That's no problem! Our team at Contigo all have loads of experience in the business finance industry, either as brokers or working for banks and lenders. We're always happy to help our users find their ideal funder. You can get in touch with us at hello@fundonion.com or call 020 812 32841.",
   },
   {
-    question: "How does FundOnion make money?",
+    question: "How does Contigo make money?",
     answer:
-      "FundOnion is a free-to-use platform. We act the same way as most other comparison websites by being paid a commission from our partners. Typically, the cost of this is exactly the same for users as if they had gone direct. If you have any questions please get in touch.",
+      "Contigo is a free-to-use platform. We act the same way as most other comparison websites by being paid a commission from our partners. Typically, the cost of this is exactly the same for users as if they had gone direct. If you have any questions please get in touch.",
   },
   {
     question: "How much can I borrow?",
@@ -31,7 +31,7 @@ const faqData = [
   {
     question: "Will this affect my credit score?",
     answer:
-      "Using the FundOnion platform to filter and review your results will not affect your credit score, however by applying to a lender they will most likely require a credit check to be conducted in order to progress the application.",
+      "Using the Contigo platform to filter and review your results will not affect your credit score, however by applying to a lender they will most likely require a credit check to be conducted in order to progress the application.",
   },
 ];
 

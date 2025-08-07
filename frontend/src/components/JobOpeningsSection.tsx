@@ -36,7 +36,7 @@ const JobOpeningsSection: React.FC = () => {
             <div className="h-1 w-12 bg-teal-600 mb-2 mx-auto md:mx-0"></div>{" "}
             {/* Underline */}
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
-              Join the growing FundOnion team
+              Join the growing Contigo team
             </h2>
           </div>
           <a

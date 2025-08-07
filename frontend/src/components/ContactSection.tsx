@@ -45,7 +45,7 @@ const ContactSection: React.FC<{ token: string | null }> = ({token}) => {
                     </p>
                     <div className="space-y-4">
                         <a
-                            href="mailto:hello@fundonion.com"
+                            href="mailto:hello@contigo.com"
                             className="flex items-center justify-center lg:justify-start text-white text-lg hover:text-gray-200 transition-colors duration-200"
                         >
                             <svg
@@ -62,7 +62,7 @@ const ContactSection: React.FC<{ token: string | null }> = ({token}) => {
                                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-18 4v7a2 2 0 002 2h14a2 2 0 002-2v-7m-18 0V5a2 2 0 012-2h14a2 2 0 012 2v7"
                                 ></path>
                             </svg>
-                            hello@fundonion.com
+                            hello@contigo.com
                         </a>
                         <a
                             href="tel:+442081232841"

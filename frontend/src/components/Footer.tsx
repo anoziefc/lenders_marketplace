@@ -104,10 +104,10 @@ const Footer: React.FC = () => {
             <div
                 className="max-w-7xl mx-auto mt-12 pt-8 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between space-y-6 sm:space-y-0">
                 <div className="text-gray-500 text-sm text-center sm:text-left">
-                    Copyright © FundOnion Limited, 2023 | Registered in England (co.
+                    Copyright © Contigo Limited, 2023 | Registered in England (co.
                     number 12743839).
                     <br/>
-                    FundOnion Limited is registered with the Register of Data Controllers
+                    Contigo Limited is registered with the Register of Data Controllers
                     ICO number ZZA776738.
                 </div>
 
