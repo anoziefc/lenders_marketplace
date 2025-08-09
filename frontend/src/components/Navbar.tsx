@@ -27,11 +27,11 @@ const NavbarContainer: React.FC<NavbarProps> = ({desktopLinks, menuSections, con
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <nav className="fixed w-full bg-white shadow-sm p-4 font-sans lg:relative z-50">
+        <nav className="fixed w-full bg-white shadow-sm p-3 font-sans lg:relative z-50">
             {/* Desktop and Mobile Container */}
-            <div className="container max-w-5xl mx-auto flex space-x-5 items-center">
+            <div className="container max-w-6xl mx-auto flex space-x-4 items-center">
                 {/* Logo */}
-                <div className="flex-shrink-0">
+                <div className="flex-shrink-0 relative w-22">
                     <Logo/>
                 </div>
 
@@ -45,10 +45,10 @@ const NavbarContainer: React.FC<NavbarProps> = ({desktopLinks, menuSections, con
                 </div>
 
                 {/* Desktop Contact Info and Button - Hidden on mobile/tablet */}
-                <div className="hidden lg:flex items-center space-x-6">
+                <div className="hidden lg:flex items-center space-x-4">
                     {/* Apply Now Button */}
                     <button
-                        className="bg-[#124e4d] text-white text-sm px-4 py-1.5 rounded-full font-semibold shadow-md">
+                        className="bg-[#124e4d] text-white text-sm px-4 py-2 rounded-full font-semibold shadow-md">
                         {buttonText}
                     </button>
 
@@ -61,7 +61,7 @@ const NavbarContainer: React.FC<NavbarProps> = ({desktopLinks, menuSections, con
                             <span className="font-semibold">{contactInfo.schedule}</span>
                         </div>
 
-                        <Link href={'tel:+442038856411'} className="text-[#124e4d] font-bold">
+                        <Link href={'tel:+442038856411'} className="text-[#124e4d] text-lg font-bold">
                             {contactInfo.phone}
                         </Link>
                     </div>
