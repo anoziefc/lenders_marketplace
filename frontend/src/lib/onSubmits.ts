@@ -20,8 +20,6 @@ export const fundingOnSubmit = async (fundingFormData: FundingFormData) => {
 export const contactOnSubmit = async (contactIfo: ContactFormData) => {
     try {
         const response = await axiosInstance.post("/submit-contact", contactIfo);
-        // todo: get token from response
-        // if (response) window.location.reload();
         if (response) {
             return response.data;
         } else {

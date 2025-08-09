@@ -75,7 +75,7 @@ const GetMailForm: React.FC<{
     };
 
     return (
-        <form className="space-y-6 bg-white p-6 rounded-3xl">
+        <form className="space-y-6 bg-white p-6 rounded-3xl z-40">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                     <label htmlFor="first_name" className="sr-only">

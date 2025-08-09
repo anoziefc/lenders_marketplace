@@ -6,18 +6,17 @@ import NoResultsSection from "@/components/NoResultsSection";
 const ResultsInfoCard: React.FC<{ result: LendersResultsResponse | null }> = ({result}) => {
 
     return (
-        <div className="flex -z-10 items-center justify-center font-inter">
+        <div className="flex items-center justify-center font-inter">
             {/* Main container for the card */}
             <div
                 className="relative flex flex-col lg:flex-row
         w-full max-w-6xl
         bg-white rounded-3xl shadow-xl overflow-hidden
         min-h-[400px] sm:min-h-[450px] md:min-h-[500px] lg:min-h-[400px]
-      "
-            >
+      ">
                 {/* Left section: Text content and button */}
 
-                {result && result?.content?.lenders_list[0] ? <ResultsSummaryCard
+                {result && result?.content?.lenders_list[0]&& result?.content?.lenders_list[0].lender_name ? <ResultsSummaryCard
                     lender_name={result.content.lenders_list[0].lender_name}
                     min_lending={result.content.lenders_list[0].min_lending}
                     max_lending={result.content.lenders_list[0].max_lending}
