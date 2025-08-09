@@ -16,6 +16,12 @@ const nextConfig = {
             },
             {
                 protocol: "https",
+                hostname: "www.contigocf.com",
+                port: "",
+                pathname: "**"
+            },
+            {
+                protocol: "https",
                 hostname: "cdn.prod.website-files.com",
                 port: "",
                 pathname: "**"

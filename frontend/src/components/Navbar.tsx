@@ -1,222 +1,208 @@
 "use client";
-import Link from "next/link";
 import React, {useState} from "react";
 import Logo from "@/components/Logo";
+import Image from "next/image";
+import Link from "next/link";
 
-// Inline SVG for a simple dropdown arrow
-const DropdownArrowIcon: React.FC<{ isOpen?: boolean }> = ({isOpen}) => (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-        className={`inline-block w-3 h-3 ml-1 transition-transform duration-200 ${
-            isOpen ? "rotate-180" : ""
-        }`}
-    >
-        <path
-            fillRule="evenodd"
-            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-            clipRule="evenodd"
-        />
+const MenuIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <line x1="4" x2="20" y1="12" y2="12"/>
+        <line x1="4" x2="20" y1="6" y2="6"/>
+        <line x1="4" x2="20" y1="18" y2="18"/>
     </svg>
 );
 
+const XIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M18 6 6 18"/>
+        <path d="m6 6 12 12"/>
+    </svg>
+);
 
-// Data for navigation items
-const navItems: NavItem[] = [
-    {
-        name: "Loans",
-        dropdown: true,
-        href: "/journey"
-    },
-    {
-        name: "Guides",
-        dropdown: true,
-        href: "/guides/guide-to-business-loans",
-        submenu: [
-            {name: "Business Loans Guide", href: "/guides/guide-to-business-loans"},
-            {name: "Asset Finance Guide", href: "/guides/guide-to-asset-finance"},
-            {name: "Invoice Finance Guide", href: "/guides/guide-to-invoice-finance"}
-        ]
-    },
-    {name: "About", href: "/about"},
-    {name: "Contact", href: "/contact"}
-];
+// Define the shape of the menu items
+interface MenuItem {
+    label: string;
+    href: string;
+}
 
-const MenuItem: React.FC<MenuItemProps> = ({item, isMobile = false}) => {
-    const [isHovered, setIsHovered] = useState(false);
-    const [isMobileSubmenuOpen, setIsMobileSubmenuOpen] = useState(false);
+// Define the shape of the menu sections
+interface MenuSection {
+    heading: string;
+    items: MenuItem[];
+}
 
-    // Toggle mobile submenu on click
-    const toggleMobileSubmenu = (e: React.MouseEvent) => {
-        if (isMobile && item.dropdown) {
-            e.preventDefault(); // Prevent navigation if it's a dropdown
-            setIsMobileSubmenuOpen(!isMobileSubmenuOpen);
-        }
+// Define the shape of the props for the Navbar component
+interface NavbarProps {
+    desktopLinks: {
+        label: string;
+        href: string;
+    }[];
+    menuSections: MenuSection[];
+    contactInfo: {
+        schedule: string;
+        phone: string;
     };
+    buttonText: string;
+}
 
-    if (item.dropdown && item.submenu) {
-        return (
-            <div
-                className={`relative ${isMobile ? "w-full" : ""}`}
-                onMouseEnter={() => !isMobile && setIsHovered(true)}
-                onMouseLeave={() => !isMobile && setIsHovered(false)}
-            >
-                <Link
-                    href={item.href || "#"}
-                    className={`flex items-center justify-between py-2 hover:text-yellow-400 ${
-                        isMobile
-                            ? "text-3xl md:text-xl w-full "
-                            : "text-gray-700 font-medium"
-                    } `}
-                    onClick={toggleMobileSubmenu}
-                >
-                    {item.name}{" "}
-                    <DropdownArrowIcon
-                        isOpen={isMobile ? isMobileSubmenuOpen : isHovered}
-                    />
-                </Link>
-                {/* Desktop Submenu */}
-                {!isMobile && isHovered && (
-                    <div
-                        className="text-md absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 border border-gray-100">
-                        {item.submenu.map((subItem) => (
-                            <Link
-                                key={subItem.name}
-                                href={subItem.href}
-                                className="block px-4 py-2 text-gray-800 hover:bg-gray-100 hover:text-yellow-400 transition-colors duration-150"
-                            >
-                                {subItem.name}
-                            </Link>
-                        ))}
-                    </div>
-                )}
-                {/* Mobile Submenu */}
-                {isMobile && isMobileSubmenuOpen && (
-                    <div className="text-3xl pl-4 mt-2 space-y-2 border-l border-gray-200">
-                        {item.submenu.map((subItem) => (
-                            <Link
-                                key={subItem.name}
-                                href={subItem.href}
-                                className="block text-gray-600 hover:text-yellow-400 text-base"
-                            >
-                                {subItem.name}
-                            </Link>
-                        ))}
-                    </div>
-                )}
-            </div>
-        );
-    }
+// Reusable Navbar component
+const NavbarContainer: React.FC<NavbarProps> = ({desktopLinks, menuSections, contactInfo, buttonText}) => {
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <Link
-            href={item.href || "#"}
-            className={`py-2 ${
-                isMobile ? "text-3xl w-full" : "text-gray-700 font-medium"
-            } hover:text-yellow-400`}
-        >
-            {item.name}
-        </Link>
-    );
-};
-
-const Navbar: React.FC = () => {
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-    const toggleMobileMenu = () => {
-        setIsMobileMenuOpen(!isMobileMenuOpen);
-    };
-
-    return (
-        <nav className="relative bg-white shadow-sm">
-            <div className="flex items-center justify-between p-4">
-                {/* Fundonion Logo */}
+        <nav className="fixed w-full bg-white shadow-sm p-4 font-sans lg:relative z-50">
+            {/* Desktop and Mobile Container */}
+            <div className="container max-w-5xl mx-auto flex items-center">
+                {/* Logo */}
                 <div className="flex-shrink-0">
-                    <Link href="/">
-                        <Logo/>
-                    </Link>
+                    <Logo/>
                 </div>
 
-                <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
-                    {navItems.map((item) => (
-                        <MenuItem key={item.name} item={item}/>
+                {/* Desktop Navigation Links - Hidden on mobile/tablet */}
+                <div className="hidden lg:flex flex-grow justify-center space-x-4 text-lg font-medium text-[#124e4d]">
+                    {desktopLinks.map((link, index) => (
+                        <a key={index} href={link.href} className="hover:text-green-700 transition duration-300">
+                            {link.label}
+                        </a>
                     ))}
                 </div>
 
-                <div className="hidden md:flex items-center space-x-4 lg:space-x-6">
-                    <Link href="/journey">
-                        <button
-                            className="bg-[#2a6d67] text-white px-5 py-2 md:px-6 md:py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors duration-200">
-                            Find Funding
-                        </button>
-                    </Link>
+                {/* Desktop Contact Info and Button - Hidden on mobile/tablet */}
+                <div className="hidden lg:flex items-center space-x-6">
+                    {/* Apply Now Button */}
+                    <button
+                        className="bg-[#124e4d] text-white px-6 py-2 rounded-full font-semibold shadow-md hover:bg-[#1a6666] transition duration-300">
+                        {buttonText}
+                    </button>
+
+                    {/* Contact Section */}
+                    <div className="flex flex-col items-center justify-center">
+                        <div className="flex items-center space-x-1 text-green-700 font-medium">
+                            <Image
+                                src={"https://www.contigocf.com/index_files/6480aad17e89f3d2e27b10ba_telephone-icon-to-call-iwoca.svg"}
+                                width={20} height={20} alt="Phone Icon"/>
+                            <span className="font-semibold">{contactInfo.schedule}</span>
+                        </div>
+
+                        <Link href={'tel:+442038856411'} className="text-[#124e4d] text-lg font-bold">
+                            {contactInfo.phone}
+                        </Link>
+                    </div>
                 </div>
 
-                <div className="flex items-center md:hidden space-x-3">
+                <div className="flex items-center lg:hidden">
                     <button
-                        onClick={toggleMobileMenu}
-                        className="p-2 rounded-full bg-[#2a6d67] text-white focus:outline-none focus:ring-2 focus:ring-[#2a6d67] focus:ring-opacity-50"
-                        aria-label="Toggle mobile menu"
+                        className="hidden sm:block lg:hidden bg-[#124e4d] text-white px-4 py-2 rounded-full font-semibold shadow-md mr-4">
+                        {buttonText}
+                    </button>
+
+                    <button
+                        onClick={() => setIsOpen(!isOpen)}
+                        className="flex items-center text-green-800 focus:outline-none"
                     >
-                        {isMobileMenuOpen ? (
-                            // Close Icon (X)
-                            <svg
-                                className="w-6 h-6"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M6 18L18 6M6 6l12 12"
-                                ></path>
-                            </svg>
-                        ) : (
-                            // Hamburger Icon
-                            <svg
-                                className="w-6 h-6"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M4 6h16M4 12h16M4 18h16"
-                                ></path>
-                            </svg>
-                        )}
+                        <span className="mr-2 font-medium">Menu</span>
+                        {isOpen ? <XIcon/> : <MenuIcon/>}
                     </button>
                 </div>
             </div>
 
-            {/* Mobile Menu Content */}
-            {isMobileMenuOpen && (
-                <div
-                    className="text-3xl md:hidden absolute top-full left-0 h-screen w-full bg-white border-t border-gray-200 shadow-lg p-4 z-50">
-                    <div className="flex flex-col items-start space-y-12">
-                        <div className="flex flex-col items-start px-4 space-y-7 text-gray-700 font-medium">
-                            {navItems.map((item) => (
-                                <MenuItem key={item.name} item={item} isMobile={true}/>
-                            ))}
-                        </div>
-                        <Link href="/journey" className="w-full">
-                            <button
-                                className="bg-[#2a6d67] text-white px-5 py-2 rounded-full font-semibold hover:bg-opacity-90 transition-colors duration-200 w-full text-center">
-                                Get started
-                            </button>
-                        </Link>
+            {/* Full-screen Mobile Menu Overlay */}
+            <div
+                className={`fixed left-0 h-full w-full bg-black transform transition-all duration-300 ease-in-out ${
+                    isOpen ? "translate-x-0" : "translate-x-full"
+                } lg:hidden`}
+            >
+                <div className="absolute top-0 right-0 h-full w-11/12 bg-white shadow-xl flex flex-col p-6">
+                    <div className="flex-grow overflow-y-auto">
+                        {menuSections.map((section, sectionIndex) => (
+                            <div key={sectionIndex} className="mb-6">
+                                <h3 className="text-gray-400 text-sm font-semibold uppercase tracking-wider mb-2 border-b pb-2">
+                                    {section.heading}
+                                </h3>
+                                <ul className="space-y-2">
+                                    {section.items.map((item, itemIndex) => (
+                                        <li key={itemIndex}>
+                                            <a href={item.href}
+                                               className="block  text-[#034E30] font-medium text-lg transition duration-200">
+                                                {item.label}
+                                                <hr className="mb-4 mt-2 border-gray-100"/>
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
                     </div>
                 </div>
-            )}
+            </div>
         </nav>
     );
 };
 
-export default Navbar;
+// Main App component to demonstrate usage
+const NavBar: React.FC = () => {
+    const navProps = {
+        desktopLinks: [
+            {label: "Business Loans", href: "https://www.contigocf.com/small-business-loans.html"},
+            {label: "FAQ", href: "#"},
+            {label: "About Us", href: "https://www.contigocf.com/about-us.html"}
+        ],
+        menuSections: [
+            {
+                heading: "PRODUCTS",
+                items: [
+                    {label: "Business Loans", href: "https://www.contigocf.com/small-business-loans.html"},
+                    {
+                        label: "Lines of Credit",
+                        href: "https://www.contigocf.com/article/33e064ea-82ef-4df6-b457-2a88b0450775.html#"
+                    },
+                    {
+                        label: "Equipment Financing",
+                        href: "https://www.contigocf.com/article/33e064ea-82ef-4df6-b457-2a88b0450775.html#"
+                    },
+                    {
+                        label: "Invoice Financing",
+                        href: "https://www.contigocf.com/article/33e064ea-82ef-4df6-b457-2a88b0450775.html#"
+                    },
+                    {
+                        label: "Merchant Cash Advance",
+                        href: "https://www.contigocf.com/article/33e064ea-82ef-4df6-b457-2a88b0450775.html#"
+                    }
+                ]
+            },
+            {
+                heading: "ABOUT",
+                items: [
+                    {label: "About us", href: "#"}
+                ]
+            },
+            {
+                heading: "FAQ",
+                items: [
+                    {
+                        label: "How to get a business loan us",
+                        href: "https://www.contigocf.com/how-to-get-a-business-loan.html"
+                    },
+                    {label: "Business Loan Calculator", href: "https://www.lenders-marketplace.duckdns.org/journey"},
+                    {label: "More", href: "https://www.contigocf.com/faq.html"}
+                ]
+            }
+        ],
+        contactInfo: {
+            schedule: "Open Mon-Fri 9-6pm",
+            phone: "020 3885 6411"
+        },
+        buttonText: "Apply now"
+    };
+
+    return (
+        <div>
+            <NavbarContainer {...navProps} />
+            <div className={`lg:hidden py-9`}></div>
+        </div>
+    );
+};
+
+export default NavBar;
