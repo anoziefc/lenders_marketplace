@@ -21,31 +21,6 @@ const XIcon = () => (
     </svg>
 );
 
-// Define the shape of the menu items
-interface MenuItem {
-    label: string;
-    href: string;
-}
-
-// Define the shape of the menu sections
-interface MenuSection {
-    heading: string;
-    items: MenuItem[];
-}
-
-// Define the shape of the props for the Navbar component
-interface NavbarProps {
-    desktopLinks: {
-        label: string;
-        href: string;
-    }[];
-    menuSections: MenuSection[];
-    contactInfo: {
-        schedule: string;
-        phone: string;
-    };
-    buttonText: string;
-}
 
 // Reusable Navbar component
 const NavbarContainer: React.FC<NavbarProps> = ({desktopLinks, menuSections, contactInfo, buttonText}) => {
@@ -54,14 +29,14 @@ const NavbarContainer: React.FC<NavbarProps> = ({desktopLinks, menuSections, con
     return (
         <nav className="fixed w-full bg-white shadow-sm p-4 font-sans lg:relative z-50">
             {/* Desktop and Mobile Container */}
-            <div className="container max-w-5xl mx-auto flex items-center">
+            <div className="container max-w-5xl mx-auto flex space-x-5 items-center">
                 {/* Logo */}
                 <div className="flex-shrink-0">
                     <Logo/>
                 </div>
 
                 {/* Desktop Navigation Links - Hidden on mobile/tablet */}
-                <div className="hidden lg:flex flex-grow justify-center space-x-4 text-lg font-medium text-[#124e4d]">
+                <div className="hidden w-fit lg:flex flex-grow justify-start space-x-4  font-medium text-[#124e4d]">
                     {desktopLinks.map((link, index) => (
                         <a key={index} href={link.href} className="hover:text-green-700 transition duration-300">
                             {link.label}
@@ -73,20 +48,20 @@ const NavbarContainer: React.FC<NavbarProps> = ({desktopLinks, menuSections, con
                 <div className="hidden lg:flex items-center space-x-6">
                     {/* Apply Now Button */}
                     <button
-                        className="bg-[#124e4d] text-white px-6 py-2 rounded-full font-semibold shadow-md hover:bg-[#1a6666] transition duration-300">
+                        className="bg-[#124e4d] text-white text-sm px-4 py-1.5 rounded-full font-semibold shadow-md">
                         {buttonText}
                     </button>
 
                     {/* Contact Section */}
-                    <div className="flex flex-col items-center justify-center">
+                    <div className="flex flex-col items-center justify-center text-sm">
                         <div className="flex items-center space-x-1 text-green-700 font-medium">
                             <Image
                                 src={"https://www.contigocf.com/index_files/6480aad17e89f3d2e27b10ba_telephone-icon-to-call-iwoca.svg"}
-                                width={20} height={20} alt="Phone Icon"/>
+                                width={14} height={14} alt="Phone Icon"/>
                             <span className="font-semibold">{contactInfo.schedule}</span>
                         </div>
 
-                        <Link href={'tel:+442038856411'} className="text-[#124e4d] text-lg font-bold">
+                        <Link href={'tel:+442038856411'} className="text-[#124e4d] font-bold">
                             {contactInfo.phone}
                         </Link>
                     </div>
@@ -95,7 +70,7 @@ const NavbarContainer: React.FC<NavbarProps> = ({desktopLinks, menuSections, con
                 <div className="flex items-center lg:hidden">
                     <button
                         className="hidden sm:block lg:hidden bg-[#124e4d] text-white px-4 py-2 rounded-full font-semibold shadow-md mr-4">
-                        {buttonText}
+                        {buttonText}ggg
                     </button>
 
                     <button

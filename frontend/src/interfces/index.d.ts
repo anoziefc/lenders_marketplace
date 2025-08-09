@@ -226,3 +226,29 @@ declare interface LendersResultsResponse {
         lenders_list: Array<FunderSummaryProps>;
     };
 }
+
+// Define the shape of the menu items
+declare interface MenuItem {
+    label: string;
+    href: string;
+}
+
+// Define the shape of the menu sections
+declare interface MenuSection {
+    heading: string;
+    items: MenuItem[];
+}
+
+// Define the shape of the props for the Navbar component
+declare interface NavbarProps {
+    desktopLinks: {
+        label: string;
+        href: string;
+    }[];
+    menuSections: MenuSection[];
+    contactInfo: {
+        schedule: string;
+        phone: string;
+    };
+    buttonText: string;
+}
