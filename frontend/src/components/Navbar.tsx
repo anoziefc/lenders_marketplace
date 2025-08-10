@@ -29,7 +29,7 @@ const NavbarContainer: React.FC<NavbarProps> = ({desktopLinks, menuSections, con
     return (
         <nav className="fixed w-full bg-white shadow-sm p-3 font-sans lg:relative z-50">
             {/* Desktop and Mobile Container */}
-            <div className="container max-w-6xl mx-auto flex space-x-4 items-center">
+            <div className="container justify-between lg:justify-start w-full max-w-6xl mx-auto flex space-x-4 items-center">
                 {/* Logo */}
                 <div className="flex-shrink-0 relative w-22">
                     <Logo/>
