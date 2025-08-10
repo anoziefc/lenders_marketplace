@@ -31,9 +31,9 @@ const NavbarContainer: React.FC<NavbarProps> = ({desktopLinks, menuSections, con
             {/* Desktop and Mobile Container */}
             <div className="container justify-between lg:justify-start w-full max-w-6xl mx-auto flex space-x-4 items-center">
                 {/* Logo */}
-                <div className="flex-shrink-0 relative w-22">
+                <Link href="https://www.contigocf.com/" className="flex-shrink-0 relative w-22">
                     <Logo/>
-                </div>
+                </Link>
 
                 {/* Desktop Navigation Links - Hidden on mobile/tablet */}
                 <div className="hidden w-fit lg:flex flex-grow justify-start space-x-4  font-medium text-[#124e4d]">
