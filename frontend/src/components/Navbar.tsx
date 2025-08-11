@@ -38,9 +38,9 @@ const NavbarContainer: React.FC<NavbarProps> = ({desktopLinks, menuSections, con
                 {/* Desktop Navigation Links - Hidden on mobile/tablet */}
                 <div className="hidden w-fit lg:flex flex-grow justify-start space-x-4  font-medium text-[#124e4d]">
                     {desktopLinks.map((link, index) => (
-                        <a key={index} href={link.href} className="hover:text-green-700 transition duration-300">
+                        <Link key={index} href={link.href} className="hover:text-green-700 transition duration-300">
                             {link.label}
-                        </a>
+                        </Link>
                     ))}
                 </div>
 
@@ -99,11 +99,11 @@ const NavbarContainer: React.FC<NavbarProps> = ({desktopLinks, menuSections, con
                                 <ul className="space-y-2">
                                     {section.items.map((item, itemIndex) => (
                                         <li key={itemIndex}>
-                                            <a href={item.href}
+                                            <Link href={item.href}
                                                className="block  text-[#034E30] font-medium text-lg transition duration-200">
                                                 {item.label}
                                                 <hr className="mb-4 mt-2 border-gray-100"/>
-                                            </a>
+                                            </Link>
                                         </li>
                                     ))}
                                 </ul>
