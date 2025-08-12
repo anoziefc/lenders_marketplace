@@ -70,7 +70,7 @@ const NavbarContainer: React.FC<NavbarProps> = ({desktopLinks, menuSections, con
                 <div className="flex items-center lg:hidden">
                     <button
                         className="hidden sm:block lg:hidden bg-[#124e4d] text-white px-4 py-2 rounded-full font-semibold shadow-md mr-4">
-                        {buttonText}ggg
+                        {buttonText}
                     </button>
 
                     <button

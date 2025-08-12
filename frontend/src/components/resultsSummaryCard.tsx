@@ -1,8 +1,5 @@
 import React from "react";
-import Image from "next/image";
-
-// Define the props for the FunderSummary component to make it reusable.
-
+import currencyFormat from "../../currencyFormart";
 
 const ResultsSummaryCard: React.FC<FunderSummaryProps> = ({
                                                               lender_name,
@@ -13,15 +10,16 @@ const ResultsSummaryCard: React.FC<FunderSummaryProps> = ({
                                                               per_month_or_factor_rate,
                                                               min_term_months,
                                                               max_term_months,
-                                                              payout_time
+                                                              payout_time,
+                                                              total_lenders
                                                           }) => {
         return (
-            <div className="bg-[#244b48] text-white p-6 md:p-12 font-sans">
+            <div className="flex-1/2 bg-[#244b48] text-white p-6 md:p-12 font-sans">
                 <div className="container mx-auto max-w-3xl">
                     {/* Main Title Section */}
                     <div className="mb-8 md:mb-12">
                         <h1 className="text-3xl md:text-5xl font-bold leading-tight">
-                            Great news! We&apos;ve found potential funders.
+                            Great news! We&apos;ve found <span className={`text-[#FFD584]`}>{total_lenders} potential funder{total_lenders > 1 && "s"}.</span>
                         </h1>
                         <p className="mt-4 text-sm md:text-base text-gray-200">
                             See your matched funders below, their rates, product, and what they offer to you. Click more
@@ -49,7 +47,7 @@ const ResultsSummaryCard: React.FC<FunderSummaryProps> = ({
                             </div>
                             <div className="flex items-center space-x-4">
                                 Amount: &nbsp;<span
-                                className="text-base text-gray-300"> £{min_lending} - £{max_lending}</span>
+                                className="text-base text-gray-300"> {currencyFormat(min_lending)} - {currencyFormat(max_lending)}</span>
                             </div>
                         </div>
                         {/* Next Meeting Info */}

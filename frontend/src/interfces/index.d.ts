@@ -209,15 +209,16 @@ declare interface getLendersResponse {
 
 
 declare interface FunderSummaryProps {
-    "lender_name": string;
-    "min_lending": number;
-    "max_lending": number;
-    "lower_lending_rate": float;
-    "higher_lending_rate": float;
-    "per_month_or_factor_rate": "PM" | "FR";
-    "min_term_months": number;
-    "max_term_months": number;
-    "payout_time": string;
+    lender_name: string;
+    min_lending: number;
+    max_lending: number;
+    lower_lending_rate: float;
+    higher_lending_rate: float;
+    per_month_or_factor_rate: "PM" | "FR";
+    min_term_months: number;
+    max_term_months: number;
+    payout_time: string;
+    total_lenders: number;
 }
 
 declare interface LendersResultsResponse {

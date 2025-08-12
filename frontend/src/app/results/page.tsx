@@ -88,13 +88,13 @@ const Page = () => {
             <div className="">
                 <p>
                     Need some help? Give us a call on{" "}
-                    <Link className="blue" href="tell:">
-                        02081232841
+                    <Link className="blue" href="tell:+4420 3885 6411">
+                        020 3885 6411
                     </Link>{" "}
                     or email us at
-                    <Link className="blue" href="mailto:hello@contigo.com">
+                    <Link className="blue" href="mailto:hello@contigonf.com">
                         {" "}
-                        hello@contigo.com
+                        hello@contigonf.com
                     </Link>
                 </p>
                 <p>
