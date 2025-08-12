@@ -1,6 +1,5 @@
 import React from "react";
 import {ChevronDown} from "lucide-react";
-import Image from "next/image";
 import Logo from "@/components/Logo";
 
 interface StatCardProps {

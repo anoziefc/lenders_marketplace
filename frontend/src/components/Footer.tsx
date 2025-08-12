@@ -116,21 +116,21 @@ const Footer: React.FC = () => {
                     <Image
                         height={20}
                         width={20}
-                        src=""
+                        src="/not-foud.avif"
                         alt="FSB Logo"
                         className="h-10 rounded-md"
                     />
                     <Image
                         height={20}
                         width={20}
-                        src=""
+                        src="/not-foud.avif"
                         alt="100 Logo"
                         className="h-10 rounded-md"
                     />
                     <Image
                         height={20}
                         width={20}
-                        src=""
+                        src="/not-foud.avif"
                         alt="BPCA Logo"
                         className="h-10 rounded-md"
                     />

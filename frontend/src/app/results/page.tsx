@@ -58,7 +58,8 @@ const GetToken = () => {
             <div className="p-4 w-full">
                 <ResultsInfoCard result={result}/>
             </div>
-            {result && <div className="p-4 w-full flex flex-col items-center">
+            {result && result.content.lenders_list.map((lender, index) => <div key={index}
+                                                                               className="p-4 w-full flex flex-col items-center">
                 <ResultFoundCard onRevealForm={triggerModal}/>
                 <Modal
                     isOpen={modalIsOpen}
@@ -69,7 +70,7 @@ const GetToken = () => {
                 >
                     <GetMailForm token={token} setIsOpen={setIsOpen}/>
                 </Modal>
-            </div>}
+            </div>)}
             <ContactSection token={token}/>
         </div>;
     }
