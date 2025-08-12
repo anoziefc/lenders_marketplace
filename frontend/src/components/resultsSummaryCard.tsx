@@ -14,7 +14,7 @@ const ResultsSummaryCard: React.FC<FunderSummaryProps> = ({
                                                               total_lenders
                                                           }) => {
         return (
-            <div className="flex-1/2 bg-[#244b48] text-white p-6 md:p-12 font-sans">
+            <div className="flex-1/2 bg-[#244b48] text-white p-4 md:p-7 font-sans">
                 <div className="container mx-auto max-w-3xl">
                     {/* Main Title Section */}
                     <div className="mb-8 md:mb-12">
@@ -28,7 +28,7 @@ const ResultsSummaryCard: React.FC<FunderSummaryProps> = ({
                     </div>
 
                     {/* Base Rate Card Section */}
-                    <div className="bg-[#1b3d3a] p-6 rounded-2xl shadow-xl max-w-xl">
+                    <div className="bg-[#1b3d3a] p-3 rounded-2xl shadow-xl max-w-xl">
                         {/* Rate and Icon Row */}
                         <div className="flex justify-between items-center pb-4 border-b border-gray-600">
                             <div className="flex items-center space-x-4">

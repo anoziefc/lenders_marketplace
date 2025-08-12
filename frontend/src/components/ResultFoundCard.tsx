@@ -11,12 +11,12 @@ interface StatCardProps {
 const StatCard: React.FC<StatCardProps> = ({label, value, highlight}) => {
     return (
         <div
-            className={`flex flex-1 flex-col items-center justify-center px-6 py-4 rounded-md min-w-[140px] ${
+            className={`flex flex-1 flex-col items-center justify-center px-6 py-3 rounded-md min-w-[140px] ${
                 highlight ? "bg-yellow-200" : "bg-blue-50"
             }`}
         >
             <p className="text-sm text-gray-500">{label}</p>
-            <p className="text-lg font-semibold">{value}</p>
+            <p className="text-md font-semibold">{value}</p>
         </div>
     );
 };
@@ -33,7 +33,7 @@ const LoanOffer: React.FC<LoanOfferProps> = ({
                                                  stats
                                              }) => {
     return (
-        <div className="flex items-center gap-4 bg-white p-3 rounded-3xl">
+        <div className="flex items-center gap-2 bg-white p-3 rounded-3xl">
             {/* Company Info */}
             <div className="flex flex-1/2 flex-col items-start">
                 <Logo/>
@@ -57,7 +57,7 @@ const LoanOffer: React.FC<LoanOfferProps> = ({
 const ResultFoundCard = ({onRevealForm}: { onRevealForm: () => void }) => {
     return (
         <div
-            className="bg-white rounded-3xl shadow-lg border w-full border-gray-300 backdrop-blur-md flex flex-col gap-4 justify-center items-center max-w-6xl">
+            className="bg-white rounded-3xl shadow-lg border w-full border-gray-300 backdrop-blur-md flex flex-col gap-1 justify-center items-center max-w-6xl">
             <div className=" flex  justify-center items-center relative">
                 <LoanOffer
                     companyName="Contigo"
@@ -70,7 +70,7 @@ const ResultFoundCard = ({onRevealForm}: { onRevealForm: () => void }) => {
                     ]}
                 />
                 <div
-                    className="bg-white/30 rounded-2xl rounded-t-4xl shadow-black/10 backdrop-blur-[10.9px] border absolute  border-white/30 h-full w-full display: flex justify-center items-center ">
+                    className="bg-white/30 rounded-2xl rounded-t-4xl shadow-black/10 backdrop-blur-[10.9px] border absolute  border-white/30 h-full w-full display: flex justify-center items-center">
                     <button onClick={onRevealForm}
                             className="px-4 py-2 border border-teal-9000 rounded-full cursor-pointer text-lg">Reveal
                         more
@@ -79,10 +79,10 @@ const ResultFoundCard = ({onRevealForm}: { onRevealForm: () => void }) => {
 
 
             </div>
-            <div className="border-t border-gray-300 w-full flex justify-center py-2 h-12 ">
+            <div className="border-t border-gray-300 w-full flex justify-center py-2 h-10 ">
                 <button
-                    onClick={onRevealForm} className="flex items-center gap-2 cursor-pointer text-lg">More
-                    details <ChevronDown/></button>
+                    onClick={onRevealForm} className="flex items-center gap-2 cursor-pointer text-md">More
+                    details <ChevronDown size={15}/></button>
             </div>
         </div>
     );
