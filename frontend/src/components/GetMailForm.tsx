@@ -45,7 +45,7 @@ const GetMailForm: React.FC<{
 
             }
             const response = await contactOnSubmit(formData);
-            if (response.success) {
+            if (response) {
                 toast.success("Mail has been sent!", {
                     position: "top-right",
                     toastId: "contactForm",
