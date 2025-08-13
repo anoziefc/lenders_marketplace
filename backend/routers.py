@@ -53,8 +53,7 @@ def request_lender(token: str = Query(..., description="Token used to fetch lend
         raise HTTPException(status_code=404, detail="Lenders list not found or expired.")
     
     data = json.loads(raw)
-    send_data = [data["lenders_list"][0] if len(data["lenders_list"]) >= 1 else data["lenders_list"]]
-
+    send_data = data["lenders_list"]
     
     return {
         "message": "Lenders fetched successfully.",
