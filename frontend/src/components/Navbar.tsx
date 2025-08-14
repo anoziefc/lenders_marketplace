@@ -6,12 +6,30 @@ import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 
 const navbarDropdownItems = [
-  { link: "#", name: "Glasgow GP unsecured finance" },
-  { link: "#", name: "Bradford dental lab working capital" },
-  { link: "#", name: "Liverpool dental practice" },
-  { link: "#", name: "Bristol care home Commercial mortgages" },
-  { link: "#", name: "Sheffield domiciliary care businesses" },
-  { link: "#", name: "London care home Commercial mortgages" },
+  {
+    link: "file:///C:/Users/godzi/Documents/contigo/contigo/article/can-glasgow-gp-surgery-secure-unsecured-finance-vital-1fa1f255.html",
+    name: "Glasgow GP unsecured finance",
+  },
+  {
+    link: "file:///C:/Users/godzi/Documents/contigo/contigo/article/can-glasgow-gp-surgery-secure-unsecured-finance-vital-1fa1f255.html",
+    name: "Bradford dental lab working capital",
+  },
+  {
+    link: "file:///C:/Users/godzi/Documents/contigo/contigo/article/how-can-liverpool-dental-practice-secure-swift-property-fe57217e.html",
+    name: "Liverpool dental practice",
+  },
+  {
+    link: "file:///C:/Users/godzi/Documents/contigo/contigo/article/seeking-bristol-care-home-commercial-mortgages-uk-elderly-26813820.html",
+    name: "Bristol care home Commercial mortgages",
+  },
+  {
+    link: "file:///C:/Users/godzi/Documents/contigo/contigo/article/how-can-sheffield-domiciliary-care-businesses-secure-vital-02278d84.html",
+    name: "Sheffield domiciliary care businesses",
+  },
+  {
+    link: "file:///C:/Users/godzi/Documents/contigo/contigo/article/how-can-sheffield-domiciliary-care-businesses-secure-vital-02278d84.html",
+    name: "London care home Commercial mortgages",
+  },
 ];
 
 const MenuIcon = () => (
@@ -72,34 +90,40 @@ const NavbarContainer: React.FC<NavbarProps> = ({
 
         {/* Desktop Navigation Links - Hidden on mobile/tablet */}
         <div className="hidden w-fit lg:flex flex-grow justify-start space-x-4  font-medium text-[#124e4d]">
-          {desktopLinks.map((link, index) => (
-            <Link
-              key={index}
-              href={link.href}
-              className="hover:text-green-700 transition duration-300"
-            >
-              {link.label}
-            </Link>
-          ))}
-          <div className="group/item cursor-pointer">
-            <div className="flex items-center justify-center">
-              Blog Articles <ChevronDown size={15} className={`m-1`} />
-            </div>
-            <div className="bg-transparent hidden group-hover/item:flex fixed top-14  flex-col items-center justify-center">
-              <div className="bg-white size-10 shadow-xl rotate-[120deg] -z-10 -mb-5"></div>
-              <div className="bg-white shadow-2xl p-2 rounded flex flex-col z-10">
-                {navbarDropdownItems.map((item, index) => (
-                  <Link
-                    key={index}
-                    href={item.link}
-                    className="hover: bg-slate-100 rounded text-slate-900 font-bold transition duration-300 my-1 p-2"
-                  >
-                    {item.name}
-                  </Link>
-                ))}
+          {desktopLinks.map((link, index) =>
+            link.label !== "Bog Articles" ? (
+              <Link
+                key={index}
+                href={link.href}
+                className="hover:text-green-700 transition duration-300"
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <div
+                key={index}
+                className="relative group/item cursor-pointer flex flex-col justify-center items-center"
+              >
+                <div className="flex items-center justify-center">
+                  Blog Articles <ChevronDown size={15} className={`m-1`} />
+                </div>
+                <div className="bg-transparent hidden group-hover/item:flex absolute top-10  flex-col items-center justify-center rounded-xl">
+                  <div className="bg-white size-10 shadow-xl rotate-[120deg] absolute -z-10 -mb-5 mx-auto left-1/2 transform -translate-x-1/2"></div>
+                  <div className="bg-white shadow-2xl p-4 rounded flex flex-col z-10 w-lg max-w-[400px] mt-4">
+                    {navbarDropdownItems.map((item, index) => (
+                      <Link
+                        key={index}
+                        href={item.link}
+                        className="hover:bg-slate-100 rounded text-slate-900 font-bold transition duration-300 my-1 p-2"
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            )
+          )}
         </div>
 
         {/* Desktop Contact Info and Button - Hidden on mobile/tablet */}
@@ -190,6 +214,7 @@ const NavBar: React.FC = () => {
         label: "Business Loans",
         href: "https://www.contigocf.com/small-business-loans.html",
       },
+      { label: "Bog Articles", href: "#" },
       { label: "FAQ", href: "#" },
       { label: "About Us", href: "https://www.contigocf.com/about-us.html" },
     ],
