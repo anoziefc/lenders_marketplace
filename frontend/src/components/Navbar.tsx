@@ -102,12 +102,12 @@ const NavbarContainer: React.FC<NavbarProps> = ({
             ) : (
               <div
                 key={index}
-                className="relative group/item cursor-pointer flex flex-col justify-center items-center"
+                className="relative group cursor-pointer flex flex-col justify-center items-center"
               >
                 <div className="flex items-center justify-center">
                   Blog Articles <ChevronDown size={15} className={`m-1`} />
                 </div>
-                <div className="bg-transparent hidden group-hover/item:flex absolute top-10  flex-col items-center justify-center rounded-xl">
+                <div className="bg-transparent hidden group-hover:flex absolute top-10  flex-col items-center justify-center rounded-xl">
                   <div className="bg-white size-10 shadow-xl rotate-[120deg] absolute -z-10 -mb-5 mx-auto left-1/2 transform -translate-x-1/2"></div>
                   <div className="bg-white shadow-2xl p-4 rounded flex flex-col z-10 w-lg max-w-[400px] mt-4">
                     {navbarDropdownItems.map((item, index) => (
